@@ -89,7 +89,7 @@ const ProductList = ({ searchQuery }) => {
     if (searchQuery) {
       const fetchSearchResults = async () => {
         try {
-          const response = await fetch(`http://127.0.0.1:8000/search?query=${searchQuery}`, {
+          const response = await fetch(`http://10.0.137.166:8000/search?query=${searchQuery}`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

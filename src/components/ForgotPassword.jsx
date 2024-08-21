@@ -14,7 +14,7 @@ const ForgotPassword = ({ onClose }) => {
 
   const handleRequestReset = async () => {
     try {
-      const response = await axios.post('http://127.0.0.1:8000/auth/password-reset/', {
+      const response = await axios.post('http://10.0.137.166:8000/auth/password-reset/', {
         phone_number: phoneNumber,
       });
       alert(response.data.message);
@@ -27,7 +27,7 @@ const ForgotPassword = ({ onClose }) => {
 
   const handleConfirmReset = async () => {
     try {
-      const response = await axios.post('http://127.0.0.1:8000/auth/password-reset-confirm/', {
+      const response = await axios.post('http://10.0.137.166:8000/auth/password-reset-confirm/', {
         token: resetCode,
         new_password: newPassword,
       });

@@ -22,7 +22,7 @@ const AdminDashboard = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/admin/users', { withCredentials: true });
+      const response = await axios.get('http://10.0.137.166:8000/admin/users', { withCredentials: true });
       setUsers(response.data);
     } catch (error) {
       setError('Error fetching users');
@@ -31,7 +31,7 @@ const AdminDashboard = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/admin/products', { withCredentials: true });
+      const response = await axios.get('http://10.0.137.166:8000/admin/products', { withCredentials: true });
       setProducts(response.data);
     } catch (error) {
       setError('Error fetching products');
@@ -40,7 +40,7 @@ const AdminDashboard = () => {
   
   const fetchOrders = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/admin/orders', { withCredentials: true });
+      const response = await axios.get('http://10.0.137.166:8000/admin/orders', { withCredentials: true });
       setOrders(response.data);
     } catch (error) {
       setError('Error fetching orders');
@@ -49,7 +49,7 @@ const AdminDashboard = () => {
 
   const createOrder = async (order) => {
     try {
-      await axios.post('http://127.0.0.1:8000/admin/orders', order, { withCredentials: true });
+      await axios.post('http://10.0.137.166:8000/admin/orders', order, { withCredentials: true });
       fetchOrders();
     } catch (error) {
       alert("입력을 확인해주세요");
@@ -59,7 +59,7 @@ const AdminDashboard = () => {
 
   const updateOrder = async (orderId, updatedOrder) => {
     try {
-      await axios.put(`http://127.0.0.1:8000/admin/orders/${orderId}`, updatedOrder, { withCredentials: true });
+      await axios.put(`http://10.0.137.166:8000/admin/orders/${orderId}`, updatedOrder, { withCredentials: true });
       fetchOrders();
     } catch (error) {
       setError('Error updating order');
@@ -68,7 +68,7 @@ const AdminDashboard = () => {
 
   const deleteOrder = async (orderId) => {
     try {
-      await axios.delete(`http://127.0.0.1:8000/admin/orders/${orderId}`, { withCredentials: true });
+      await axios.delete(`http://10.0.137.166:8000/admin/orders/${orderId}`, { withCredentials: true });
       fetchOrders();
     } catch (error) {
       setError('Error deleting order');

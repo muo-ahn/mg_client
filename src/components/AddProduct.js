@@ -74,7 +74,7 @@ const AddProduct = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://127.0.0.1:8000/medaka', {
+            const response = await fetch('http://10.0.137.166:8000/medaka', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
