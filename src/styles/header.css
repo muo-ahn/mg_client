@@ -1,0 +1,128 @@
+/* General styles */
+.header-container {
+  background-color: white;
+  padding: 16px 24px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo {
+  size: fixed;
+  width: 8.25rem;
+  height: 2.25rem;
+}
+
+.header-container .user-dropdown-btn:hover + .user-dropdown-content,
+.header-container .user-dropdown-content:hover {
+  display: block;
+}
+
+.timezone {
+  border: 1px solid #ddd;
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.top-header {
+  border: 0;
+}
+
+.bottom-header {
+  padding-bottom: 0.75rem;
+}
+
+/* Search bar styles */
+.search-bar-container {
+  display: flex;
+  align-items: center;
+  flex-grow: 2;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  background-color: #ebebeb;
+  border-radius: 1.75rem;
+  overflow: hidden;
+}
+
+.search-bar {
+  margin-inline: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 1.75rem 0 0 1.75rem;
+  outline: none;
+  flex: 1;
+  background-color: #ebebeb;
+}
+
+.search-button {
+  padding: 0.5rem 1rem;
+  background-color: #ebebeb;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 1.75rem 1.75rem 0;
+}
+
+.search-button:hover {
+  background-color: #d4d4d4;
+}
+
+.search-button svg {
+  width: 16px;
+  height: 16px;
+  fill: #333;
+}
+
+.user-icon {
+  width: 32px;
+  height: 32px;
+  margin-right: 8px;
+  border-radius: 1rem;
+}
+
+.user-dropdown {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-triangle {
+  margin-left: auto;
+}
+
+/* Dropdown content styles */
+.dropdown-menu {
+  background-color: white !important;
+}
+
+.dropdown-item {
+  color: black !important;
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa !important;
+  color: black !important;
+}
+
+@media only screen and (max-width: 768px) {
+  .logo {
+      width: 125px; /* Smaller logo size for mobile */
+      height: auto;
+  }
+
+  .bottom-nav {
+      font-size: 12px; /* Smaller font size for mobile */
+  }
+}

@@ -1,0 +1,137 @@
+.product-card {
+  background-color: white;
+  border: 1px solid #ddd;
+  min-height: 350px;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+@media (min-width: 768px) {
+  .product-card {
+      min-height: 450px; 
+  }
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+  overflow: hidden;
+}
+
+.product-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.time-remaining {
+  position: absolute;
+  width: 87.5%;
+  bottom: -5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.product-details {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+
+
+.original-source {
+  color: #777;
+  font-size: 0.75rem;
+}
+
+.product-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 8px;
+}
+
+.product-name {
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1.2;
+  max-height: 2.4em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+}
+
+.icon-section {
+  display: flex;
+  gap: 8px;
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.heart-icon, .gavel-icon {
+  width: 12.5px;
+  height: 12.5px;
+}
+
+.icon-count {
+  font-size: 0.875rem;
+  color: #555;
+}
+
+.product-prices {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.875rem;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 8px;
+}
+
+.start-price, .current-price {
+  font-weight: bold;
+}
+
+.current-price {
+  color: #66a5cc;
+}
+
+.product-footer {
+  padding: 8px;
+  background-color: #f8f8f8;
+  border-top: 0.75px solid #ddd;
+  font-size: 0.75rem;
+  text-align: middle;
+  margin: 0 auto;
+  text-align : center;
+}
+
+.end-date {
+  color: #555;
+}

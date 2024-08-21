@@ -1,0 +1,62 @@
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0.5rem;
+}
+
+.blog-search-results {
+  margin-top: 20px;
+}
+
+.blog-search-results-header {
+  margin-bottom: 20px;
+}
+
+.search-result-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.search-result-item .text-container {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.search-result-item h3 {
+  font-size: 1rem;
+}
+
+.search-result-item p {
+  font-size: 0.75rem;
+}
+
+.second-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.sort-dropdown {
+  display: flex;
+  align-items: center;
+}
+
+.sortby-menu {
+  font-size: 0.875rem;
+}
+
+.product-count {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1rem;
+}
