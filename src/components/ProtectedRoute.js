@@ -14,7 +14,7 @@ const ProtectedRoute = ({ children }) => {
 
     const checkAuth = async () => {
       try {
-        await axios.get('http://127.0.0.1:8000/auth/users/me', { withCredentials: true });
+        await axios.get('http://medakaauction.com/auth/users/me', { withCredentials: true });
         if (isMounted) {
           setIsAuthenticated(true);
           setLoading(false);

@@ -26,7 +26,7 @@ const ProductDetail = () => {
   const [seller, setSeller] = useState(null);
 
   useEffect(() => {
-    axios.get(`http://127.0.0.1:8000/medaka/${id}/`)
+    axios.get(`http://medakaauction.com/medaka/${id}/`)
       .then(response => {
         setProduct(response.data);
         setMainImage(response.data.media || response.data.thumbnails[0]);
@@ -35,7 +35,7 @@ const ProductDetail = () => {
         return response.data.seller_id;
       })
       .then(sellerId => {
-        return axios.get(`http://127.0.0.1:8000/seller/${sellerId}`);
+        return axios.get(`http://medakaauction.com/seller/${sellerId}`);
       })
       .then(response => {
         setSeller(response.data);
@@ -82,7 +82,7 @@ const ProductDetail = () => {
 
   const handleIncreaseInterest = async () => {
     try {
-      await axios.put(`http://127.0.0.1:8000/medaka/${id}/interest`);
+      await axios.put(`http://medakaauction.com/medaka/${id}/interest`);
       window.location.reload();
     } catch (error) {
       console.error('Error increasing interest:', error);
