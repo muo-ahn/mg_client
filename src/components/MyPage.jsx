@@ -29,7 +29,7 @@ const MyPage = () => {
 
     const fetchUserData = async () => {
         try {
-            const response = await axios.get('http://10.0.137.166:8000/user/my-page', {
+            const response = await axios.get('http://medakaauction.com/user/my-page', {
                 withCredentials: true
             });
             setUser(response.data);
@@ -44,7 +44,7 @@ const MyPage = () => {
 
     const fetchFinishedProducts = async (userId) => {
         try {
-            const response = await axios.get(`http://10.0.137.166:8000/medaka/${userId}/finished`, {
+            const response = await axios.get(`http://medakaauction.com/medaka/${userId}/finished`, {
                 withCredentials: true
             });
             setFinishedProducts(response.data);
@@ -68,7 +68,7 @@ const MyPage = () => {
                 iconBase64 = reader.result;
 
                 try {
-                    await axios.put('http://10.0.137.166:8000/auth/user/update', {
+                    await axios.put('http://medakaauction.com/auth/user/update', {
                         nickname,
                         password,
                         icon: iconBase64
@@ -85,7 +85,7 @@ const MyPage = () => {
             };
         } else {
             try {
-                await axios.put('http://10.0.137.166:8000/auth/user/update', {
+                await axios.put('http://medakaauction.com/auth/user/update', {
                     nickname,
                     password,
                 }, {

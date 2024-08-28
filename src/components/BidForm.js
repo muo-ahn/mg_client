@@ -43,7 +43,7 @@ const BidForm = ({ productId, bids: initialBids, latestBid, startPrice }) => {
                 return
             }
 
-            const response = await fetch(`http://10.0.137.166:8000/medaka/${productId}/bids`, {
+            const response = await fetch(`http://medakaauction.com/medaka/${productId}/bids`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

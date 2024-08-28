@@ -19,7 +19,7 @@ const InstantPurchase = ({ productId }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`http://10.0.137.166:8000/medaka/${productId}/instant`, {
+            const response = await fetch(`http://medakaauction.com/medaka/${productId}/instant`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

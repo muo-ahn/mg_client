@@ -12,7 +12,7 @@ const ProtectAdmin = ({ children }) => {
 
     const checkAuth = async () => {
       try {
-        await axios.get('http://10.0.137.166:8000/auth/admin/me', { withCredentials: true });
+        await axios.get('http://medakaauction.com/auth/admin/me', { withCredentials: true });
         setIsAuthenticated(true);
       } catch (error) {
         if (isMounted) {

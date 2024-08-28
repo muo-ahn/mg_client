@@ -35,7 +35,7 @@ const LoginRegisterPage = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        'http://10.0.137.166:8000/auth/login',
+        'http://medakaauction.com/auth/login',
         new URLSearchParams({
           username: loginForm.username,
           password: loginForm.password,
@@ -60,7 +60,7 @@ const LoginRegisterPage = () => {
 
   const requestVerificationCode = async () => {
     try {
-      const response = await axios.post('http://10.0.137.166:8000/auth/request-verification-code/', {
+      const response = await axios.post('http://medakaauction.com/auth/request-verification-code/', {
         phone_number: registerForm.phone_number,
       });
       alert(response.data.message);
@@ -73,7 +73,7 @@ const LoginRegisterPage = () => {
 
   const verifyPhoneNumber = async () => {
     try {
-      const response = await axios.post('http://10.0.137.166:8000/auth/verify-phone-number/', {
+      const response = await axios.post('http://medakaauction.com/auth/verify-phone-number/', {
         phone_number: registerForm.phone_number,
         code: verificationCode,
       });
@@ -92,7 +92,7 @@ const LoginRegisterPage = () => {
       return;
     }
     try {
-      await axios.post('http://10.0.137.166:8000/auth/register/', {
+      await axios.post('http://medakaauction.com/auth/register/', {
         username: registerForm.username,
         phone_number: registerForm.phone_number,
         password: registerForm.password,
@@ -111,7 +111,7 @@ const LoginRegisterPage = () => {
   const handleKakaoLogin = async () => {
     try {
       const response = await axios.get(
-        'http://10.0.137.166:8000/auth/login/kakao',
+        'http://medakaauction.com/auth/login/kakao',
         { withCredentials: true }
       );
       if (response.status === 200) {

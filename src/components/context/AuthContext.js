@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
       const id = cookies.get('id');
       if (id) {
         try {
-          const response = await axios.get('http://10.0.137.166:8000/user/my-page', { withCredentials: true });
+          const response = await axios.get('http://medakaauction.com/user/my-page', { withCredentials: true });
           setUser(response.data);
           setIsAuthenticated(true);
         } catch (error) {
