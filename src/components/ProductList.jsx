@@ -180,7 +180,7 @@ const ProductList = ({ searchQuery }) => {
             filteredAuctions.map(auction => (
               <Link to={`/product/${auction.product_id}`} key={auction.product_id}>
                 <ProductCard
-                  image={auction.media || auction.thumbnails[0] || '/placeholder.svg'}
+                  image={auction.media || auction.thumbnails[0] || auction.media_extra[0] || '/placeholder.svg'}
                   interestCount={auction.interest || 0}
                   originalSource={auction.original_source}
                   startPrice={formatCurrency(auction.start_price)}
