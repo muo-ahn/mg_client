@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
       const id = cookies.get('id');
       if (id) {
         try {
-          const response = await axios.get('https://3ac4dojx07.execute-api.ap-northeast-2.amazonaws.com/v1/user/my-page', { withCredentials: true });
+          const response = await axios.get('https://93j3gckjmc.execute-api.ap-northeast-2.amazonaws.com/default/mg-lambda-backend/user/my-page', { withCredentials: true });
           setUser(response.data);
           setIsAuthenticated(true);
         } catch (error) {

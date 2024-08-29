@@ -35,7 +35,7 @@ const LoginRegisterPage = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        'https://3ac4dojx07.execute-api.ap-northeast-2.amazonaws.com/v1/auth/login',
+        'https://93j3gckjmc.execute-api.ap-northeast-2.amazonaws.com/default/mg-lambda-backend/auth/login',
         new URLSearchParams({
           username: loginForm.username,
           password: loginForm.password,
@@ -60,7 +60,7 @@ const LoginRegisterPage = () => {
 
   const requestVerificationCode = async () => {
     try {
-      const response = await axios.post('https://3ac4dojx07.execute-api.ap-northeast-2.amazonaws.com/v1/auth/request-verification-code/', {
+      const response = await axios.post('https://93j3gckjmc.execute-api.ap-northeast-2.amazonaws.com/default/mg-lambda-backend/auth/request-verification-code/', {
         phone_number: registerForm.phone_number,
       });
       alert(response.data.message);
@@ -73,7 +73,7 @@ const LoginRegisterPage = () => {
 
   const verifyPhoneNumber = async () => {
     try {
-      const response = await axios.post('https://3ac4dojx07.execute-api.ap-northeast-2.amazonaws.com/v1/auth/verify-phone-number/', {
+      const response = await axios.post('https://93j3gckjmc.execute-api.ap-northeast-2.amazonaws.com/default/mg-lambda-backend/auth/verify-phone-number/', {
         phone_number: registerForm.phone_number,
         code: verificationCode,
       });
@@ -92,7 +92,7 @@ const LoginRegisterPage = () => {
       return;
     }
     try {
-      await axios.post('https://3ac4dojx07.execute-api.ap-northeast-2.amazonaws.com/v1/auth/register/', {
+      await axios.post('https://93j3gckjmc.execute-api.ap-northeast-2.amazonaws.com/default/mg-lambda-backend/auth/register/', {
         username: registerForm.username,
         phone_number: registerForm.phone_number,
         password: registerForm.password,
