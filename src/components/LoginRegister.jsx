@@ -35,7 +35,7 @@ const LoginRegisterPage = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        'http://medakaauction.com/auth/login',
+        'https://3ac4dojx07.execute-api.ap-northeast-2.amazonaws.com/v1/auth/login',
         new URLSearchParams({
           username: loginForm.username,
           password: loginForm.password,
@@ -60,7 +60,7 @@ const LoginRegisterPage = () => {
 
   const requestVerificationCode = async () => {
     try {
-      const response = await axios.post('http://medakaauction.com/auth/request-verification-code/', {
+      const response = await axios.post('https://3ac4dojx07.execute-api.ap-northeast-2.amazonaws.com/v1/auth/request-verification-code/', {
         phone_number: registerForm.phone_number,
       });
       alert(response.data.message);
@@ -73,7 +73,7 @@ const LoginRegisterPage = () => {
 
   const verifyPhoneNumber = async () => {
     try {
-      const response = await axios.post('http://medakaauction.com/auth/verify-phone-number/', {
+      const response = await axios.post('https://3ac4dojx07.execute-api.ap-northeast-2.amazonaws.com/v1/auth/verify-phone-number/', {
         phone_number: registerForm.phone_number,
         code: verificationCode,
       });
@@ -92,7 +92,7 @@ const LoginRegisterPage = () => {
       return;
     }
     try {
-      await axios.post('http://medakaauction.com/auth/register/', {
+      await axios.post('https://3ac4dojx07.execute-api.ap-northeast-2.amazonaws.com/v1/auth/register/', {
         username: registerForm.username,
         phone_number: registerForm.phone_number,
         password: registerForm.password,

@@ -35,7 +35,7 @@ const ProductDetail = () => {
         return response.data.seller_id;
       })
       .then(sellerId => {
-        return axios.get(`http://medakaauction.com/seller/${sellerId}`);
+        return axios.get(`https://3ac4dojx07.execute-api.ap-northeast-2.amazonaws.com/v1/seller/${sellerId}`);
       })
       .then(response => {
         setSeller(response.data);

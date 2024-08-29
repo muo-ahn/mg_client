@@ -14,7 +14,7 @@ const ForgotPassword = ({ onClose }) => {
 
   const handleRequestReset = async () => {
     try {
-      const response = await axios.post('http://medakaauction.com/auth/password-reset/', {
+      const response = await axios.post('https://3ac4dojx07.execute-api.ap-northeast-2.amazonaws.com/v1/auth/password-reset/', {
         phone_number: phoneNumber,
       });
       alert(response.data.message);
@@ -27,7 +27,7 @@ const ForgotPassword = ({ onClose }) => {
 
   const handleConfirmReset = async () => {
     try {
-      const response = await axios.post('http://medakaauction.com/auth/password-reset-confirm/', {
+      const response = await axios.post('https://3ac4dojx07.execute-api.ap-northeast-2.amazonaws.com/v1/auth/password-reset-confirm/', {
         token: resetCode,
         new_password: newPassword,
       });

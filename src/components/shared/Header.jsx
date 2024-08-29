@@ -19,7 +19,7 @@ export function Header({ onSearch }) {
   useEffect(() => {
     const fetchTime = async () => {
       try {
-        const response = await axios.get(`http://medakaauction.com/api/time`);
+        const response = await axios.get(`https://3ac4dojx07.execute-api.ap-northeast-2.amazonaws.com/v1/api/time`);
         setCurrentTime(new Date(response.data.current_time));
       } catch (error) {
         console.error("Error fetching time:", error);
@@ -41,7 +41,7 @@ export function Header({ onSearch }) {
     if (isAuthenticated) {
       const fetchUserData = async () => {
         try {
-          const response = await axios.get('http://medakaauction.com/user/my-page', { withCredentials: true });
+          const response = await axios.get('https://3ac4dojx07.execute-api.ap-northeast-2.amazonaws.com/v1/user/my-page', { withCredentials: true });
           setUser(response.data);
         } catch (error) {
           console.error("Error fetching user data:", error);
@@ -54,7 +54,7 @@ export function Header({ onSearch }) {
 
   const handleLogout = async () => {
     try {
-      await axios.post('http://medakaauction.com/auth/logout', {}, { withCredentials: true });
+      await axios.post('https://3ac4dojx07.execute-api.ap-northeast-2.amazonaws.com/v1/auth/logout', {}, { withCredentials: true });
       setIsAuthenticated(false);
       navigate('/');
     } catch (error) {
