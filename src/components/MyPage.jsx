@@ -1,6 +1,4 @@
-// src/components/MyPage.jsx
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { Label } from './ui/Label';
 import { Input } from './ui/Input';
@@ -22,27 +20,7 @@ const MyPage = () => {
     const [oauth, setOauth] = useState(null);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const fetchUserData = async () => {
-            try {
-                const response = await axios.get('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/user/my-page/', {
-                    withCredentials: true
-                });
-                setUser(response.data);
-    
-                if (response.data.id) {
-                    fetchFinishedProducts(response.data.id);
-                }
-            } catch (error) {
-                console.error('Error fetching user data:', error);
-            }
-        };
-    
-        setOauth(getCookie('oauth'));
-        fetchUserData();
-    }, [setOauth, getCookie, fetchUserData]);
-    
-    const fetchFinishedProducts = async (userId) => {
+    const fetchFinishedProducts = useCallback(async (userId) => {
         try {
             const response = await axios.get(`https://medakaauction.com/medaka/${userId}/finished`, {
                 withCredentials: true
@@ -51,7 +29,27 @@ const MyPage = () => {
         } catch (error) {
             console.error('Error fetching finished products:', error);
         }
-    };
+    }, []);
+
+    const fetchUserData = useCallback(async () => {
+        try {
+            const response = await axios.get('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/user/my-page/', {
+                withCredentials: true
+            });
+            setUser(response.data);
+
+            if (response.data.id) {
+                fetchFinishedProducts(response.data.id);
+            }
+        } catch (error) {
+            console.error('Error fetching user data:', error);
+        }
+    }, [fetchFinishedProducts]);
+
+    useEffect(() => {
+        setOauth(getCookie('oauth'));
+        fetchUserData();
+    }, [fetchUserData]);
 
     const handleSaveChanges = async (event) => {
         event.preventDefault();
