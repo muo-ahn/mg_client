@@ -16,7 +16,13 @@ export const AuthProvider = ({ children }) => {
       if (id) {
         try {
           const response = await axios.get('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/user/my-page/', 
-            { withCredentials: true });
+            {
+              withCredentials: true,
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            }
+          );
           setUser(response.data);
           setIsAuthenticated(true);
         } catch (error) {

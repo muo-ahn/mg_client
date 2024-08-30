@@ -50,25 +50,6 @@ const LoginRegisterPage = () => {
         }
       );
       if (response.data.access_token) {
-        console.log(response.data.access_token);
-        const expirationTime = new Date(new Date().getTime() + 30 * 60 * 1000);
-        
-        cookies.set('access_token', response.data.access_token, {
-          expires: expirationTime,
-          secure: true,
-        });
-        
-        cookies.set('oauth', 'local', {
-          expires: expirationTime,
-        });
-        
-        cookies.set('id', response.data.id, {
-          expires: expirationTime,
-        });
-        
-        cookies.set('username', response.data.username, {
-          expires: expirationTime,
-        });
         setIsAuthenticated(true);
         navigate('/');
       } else {

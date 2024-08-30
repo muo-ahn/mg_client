@@ -40,7 +40,14 @@ export function Header({ onSearch }) {
     if (isAuthenticated) {
       const fetchUserData = async () => {
         try {
-          const response = await axios.get('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/user/my-page/', { withCredentials: true });
+          const response = await axios.get('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/user/my-page/', 
+            {
+              withCredentials: true,
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            }
+          );
           setUser(response.data);
         } catch (error) {
           console.error("Error fetching user data:", error);
