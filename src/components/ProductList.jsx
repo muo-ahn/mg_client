@@ -5,7 +5,6 @@ import ProductCard from './ui/ProductCard';
 import { formatCurrency } from './context/FormatCurrency';
 import '../styles/productList.css'
 import { useAuth } from './context/AuthContext';
-import { BASE_URL } from '../config';
 
 export const calculateRemainingTime = (endDate) => {
   const now = new Date();

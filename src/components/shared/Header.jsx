@@ -8,7 +8,6 @@ import axios from 'axios';
 import Dropdown from 'react-bootstrap/Dropdown';
 import SearchBar from './SearchBar';
 import '../../styles/header.css';
-import { BASE_URL } from '../../config';
 
 export function Header({ onSearch }) {
   const { isAuthenticated, setIsAuthenticated } = useAuth();
