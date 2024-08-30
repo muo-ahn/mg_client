@@ -89,7 +89,7 @@ const ProductList = ({ searchQuery }) => {
     if (searchQuery) {
       const fetchSearchResults = async () => {
         try {
-          const response = await fetch(`https://93j3gckjmc.execute-api.ap-northeast-2.amazonaws.com/default/mg-lambda-backend/search?query=${searchQuery}`, {
+          const response = await fetch(`https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/search?query=${searchQuery}`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

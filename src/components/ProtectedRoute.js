@@ -14,7 +14,7 @@ const ProtectedRoute = ({ children }) => {
 
     const checkAuth = async () => {
       try {
-        await axios.get('https://93j3gckjmc.execute-api.ap-northeast-2.amazonaws.com/default/mg-lambda-backend/auth/users/me', { withCredentials: true });
+        await axios.get('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/auth/users/me', { withCredentials: true });
         if (isMounted) {
           setIsAuthenticated(true);
           setLoading(false);

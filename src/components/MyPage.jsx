@@ -29,7 +29,7 @@ const MyPage = () => {
 
     const fetchUserData = async () => {
         try {
-            const response = await axios.get('https://93j3gckjmc.execute-api.ap-northeast-2.amazonaws.com/default/mg-lambda-backend/user/my-page', {
+            const response = await axios.get('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/user/my-page', {
                 withCredentials: true
             });
             setUser(response.data);
@@ -68,7 +68,7 @@ const MyPage = () => {
                 iconBase64 = reader.result;
 
                 try {
-                    await axios.put('https://93j3gckjmc.execute-api.ap-northeast-2.amazonaws.com/default/mg-lambda-backend/auth/user/update', {
+                    await axios.put('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/auth/user/update', {
                         nickname,
                         password,
                         icon: iconBase64
@@ -85,7 +85,7 @@ const MyPage = () => {
             };
         } else {
             try {
-                await axios.put('https://93j3gckjmc.execute-api.ap-northeast-2.amazonaws.com/default/mg-lambda-backend/auth/user/update', {
+                await axios.put('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/auth/user/update', {
                     nickname,
                     password,
                 }, {

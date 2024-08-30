@@ -14,7 +14,7 @@ const ForgotPassword = ({ onClose }) => {
 
   const handleRequestReset = async () => {
     try {
-      const response = await axios.post('https://93j3gckjmc.execute-api.ap-northeast-2.amazonaws.com/default/mg-lambda-backend/auth/password-reset/', {
+      const response = await axios.post('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/auth/password-reset/', {
         phone_number: phoneNumber,
       });
       alert(response.data.message);
@@ -27,7 +27,7 @@ const ForgotPassword = ({ onClose }) => {
 
   const handleConfirmReset = async () => {
     try {
-      const response = await axios.post('https://93j3gckjmc.execute-api.ap-northeast-2.amazonaws.com/default/mg-lambda-backend/auth/password-reset-confirm/', {
+      const response = await axios.post('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/auth/password-reset-confirm/', {
         token: resetCode,
         new_password: newPassword,
       });
