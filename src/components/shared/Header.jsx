@@ -3,12 +3,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { Cookies } from 'react-cookie';
 import logo_header from "../../images/logo_header.png";
 import axios from 'axios';
 import Dropdown from 'react-bootstrap/Dropdown';
 import SearchBar from './SearchBar';
 import '../../styles/header.css';
 
+const cookies = new Cookies();
 export function Header({ onSearch }) {
   const { isAuthenticated, setIsAuthenticated } = useAuth();
   const navigate = useNavigate();
@@ -68,6 +70,10 @@ export function Header({ onSearch }) {
           }
         }
       );
+      cookies.remove('access_token');
+      cookies.remove('oauth');
+      cookies.remove('id');
+      cookies.remove('username');
       setIsAuthenticated(false);
       navigate('/');
     } catch (error) {
