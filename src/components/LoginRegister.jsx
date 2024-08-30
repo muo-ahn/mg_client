@@ -9,10 +9,8 @@ import { Button } from './ui/Button';
 import { useAuth } from './context/AuthContext';
 import Modal from './Modal';
 import ForgotPassword from './ForgotPassword';
-import { Cookies } from 'react-cookie';
 import '../styles/loginRegister.css'
 
-const cookies = new Cookies();
 const LoginRegisterPage = () => {
   const [loginForm, setLoginForm] = useState({ username: '', password: '' });
   const [registerForm, setRegisterForm] = useState({ username: '', phone_number: '', password: '' });
