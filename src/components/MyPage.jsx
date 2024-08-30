@@ -23,25 +23,25 @@ const MyPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                const response = await axios.get('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/user/my-page/', {
+                    withCredentials: true
+                });
+                setUser(response.data);
+    
+                if (response.data.id) {
+                    fetchFinishedProducts(response.data.id);
+                }
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
+        };
+    
         setOauth(getCookie('oauth'));
         fetchUserData();
-    }, []);
-
-    const fetchUserData = async () => {
-        try {
-            const response = await axios.get('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/user/my-page/', {
-                withCredentials: true
-            });
-            setUser(response.data);
-
-            if (response.data.id) {
-                fetchFinishedProducts(response.data.id);
-            }
-        } catch (error) {
-            console.error('Error fetching user data:', error);
-        }
-    };
-
+    }, [setOauth, getCookie, fetchUserData]);
+    
     const fetchFinishedProducts = async (userId) => {
         try {
             const response = await axios.get(`https://medakaauction.com/medaka/${userId}/finished`, {

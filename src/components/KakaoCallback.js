@@ -30,7 +30,7 @@ const KakaoCallback = () => {
           setIsAuthenticated(false);
           navigate('/');
         }
-      }, [location, navigate, cookies, setCookie]);
+      }, [location, navigate, cookies, setCookie, setIsAuthenticated]);
 
     return <div>Loading...</div>;
 };

@@ -28,15 +28,6 @@ const AddProduct = () => {
         setProduct({ ...product, [name]: value });
     };
 
-    const handleFileChange = (e) => {
-        const file = e.target.files[0];
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            setProduct({ ...product, media: reader.result });
-        };
-        reader.readAsDataURL(file);
-    };
-    
     const handleMultiFileChangeExtra = (e) => {
         const files = Array.from(e.target.files);
         const promises = files.map((file) => {
