@@ -50,6 +50,7 @@ const LoginRegisterPage = () => {
         }
       );
       if (response.data.access_token) {
+        alert("get response data");
         const expirationTime = new Date(new Date().getTime() + 30 * 60 * 1000);
         
         cookies.set('access_token', response.data.access_token, {
@@ -73,6 +74,7 @@ const LoginRegisterPage = () => {
           domain: 'medakaauction.com',
           expires: expirationTime,
         });
+        alert(cookies.get('access_token'));
         setIsAuthenticated(true);
         navigate('/');
       } else {
