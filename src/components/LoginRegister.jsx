@@ -50,7 +50,7 @@ const LoginRegisterPage = () => {
         }
       );
       if (response.data.access_token) {
-        alert("get response data");
+        console.log(response.data.access_token);
         const expirationTime = new Date(new Date().getTime() + 30 * 60 * 1000);
         
         cookies.set('access_token', response.data.access_token, {
@@ -58,23 +58,26 @@ const LoginRegisterPage = () => {
           expires: expirationTime,
           secure: true,
           httpOnly: true,
+          sameSite: 'None',
         });
         
         cookies.set('oauth', 'local', {
           domain: 'medakaauction.com',
           expires: expirationTime,
+          sameSite: 'None',
         });
         
         cookies.set('id', response.data.id, {
           domain: 'medakaauction.com',
           expires: expirationTime,
+          sameSite: 'None',
         });
         
         cookies.set('username', response.data.username, {
           domain: 'medakaauction.com',
           expires: expirationTime,
+          sameSite: 'None',
         });
-        alert(cookies.get('access_token'));
         setIsAuthenticated(true);
         navigate('/');
       } else {
