@@ -45,7 +45,7 @@ const ProductDetail = () => {
         setError('Error fetching product details. Please try again later.');
       });
 
-    const socket = new WebSocket(`ws://127.0.0.1:8000/medaka/update_bid/${id}`);
+    const socket = new WebSocket(`ws://medakaauction.com/medaka/update_bid/${id}`);
     socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
       if (data) {

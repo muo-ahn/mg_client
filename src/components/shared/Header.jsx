@@ -60,7 +60,7 @@ export function Header({ onSearch }) {
 
   const handleLogout = async () => {
     try {
-      await axios.post('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/auth/logout/',
+      await axios.post('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/auth/logout',
         {
           withCredentials: true,
           headers: {
