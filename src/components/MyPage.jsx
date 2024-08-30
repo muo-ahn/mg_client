@@ -44,7 +44,7 @@ const MyPage = () => {
 
     const fetchFinishedProducts = async (userId) => {
         try {
-            const response = await axios.get(`http://medakaauction.com/medaka/${userId}/finished`, {
+            const response = await axios.get(`https://medakaauction.com/medaka/${userId}/finished`, {
                 withCredentials: true
             });
             setFinishedProducts(response.data);
