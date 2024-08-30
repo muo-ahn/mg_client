@@ -29,7 +29,7 @@ const MyPage = () => {
 
     const fetchUserData = async () => {
         try {
-            const response = await axios.get('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/user/my-page', {
+            const response = await axios.get('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/user/my-page/', {
                 withCredentials: true
             });
             setUser(response.data);

@@ -38,6 +38,7 @@ export function Header({ onSearch }) {
 
   useEffect(() => {
     if (isAuthenticated) {
+      console.log("authenticated")
       const fetchUserData = async () => {
         try {
           const response = await axios.get('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/user/my-page/', 
