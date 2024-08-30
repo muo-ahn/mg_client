@@ -38,7 +38,6 @@ export function Header({ onSearch }) {
 
   useEffect(() => {
     if (isAuthenticated) {
-      console.log("authenticated")
       const fetchUserData = async () => {
         try {
           const response = await axios.get('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/user/my-page/', 
@@ -61,7 +60,14 @@ export function Header({ onSearch }) {
 
   const handleLogout = async () => {
     try {
-      await axios.post('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/auth/logout', {}, { withCredentials: true });
+      await axios.post('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/auth/logout/',
+        {
+          withCredentials: true,
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      );
       setIsAuthenticated(false);
       navigate('/');
     } catch (error) {
