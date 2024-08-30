@@ -26,7 +26,7 @@ const ProductDetail = () => {
   const [seller, setSeller] = useState(null);
 
   useEffect(() => {
-    axios.get(`http://medakaauction.com/medaka/${id}/`)
+    axios.get(`http://medakaauction.com/medaka/${id}`)
       .then(response => {
         setProduct(response.data);
         setMainImage(response.data.media || response.data.thumbnails[0]);
