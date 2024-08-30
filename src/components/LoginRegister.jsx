@@ -56,6 +56,7 @@ const LoginRegisterPage = () => {
         cookies.set('access_token', response.data.access_token, {
           expires: expirationTime,
           secure: true,
+          httpOnly: true
         });
         
         cookies.set('oauth', 'local', {
