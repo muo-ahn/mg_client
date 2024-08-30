@@ -9,8 +9,10 @@ import { Button } from './ui/Button';
 import { useAuth } from './context/AuthContext';
 import Modal from './Modal';
 import ForgotPassword from './ForgotPassword';
+import { Cookies } from 'react-cookie';
 import '../styles/loginRegister.css'
 
+const cookies = new Cookies();
 const LoginRegisterPage = () => {
   const [loginForm, setLoginForm] = useState({ username: '', password: '' });
   const [registerForm, setRegisterForm] = useState({ username: '', phone_number: '', password: '' });
@@ -48,6 +50,29 @@ const LoginRegisterPage = () => {
         }
       );
       if (response.data.access_token) {
+        const expirationTime = new Date(new Date().getTime() + 30 * 60 * 1000);
+        
+        cookies.set('access_token', response.data.access_token, {
+          domain: 'medakaauction.com',
+          expires: expirationTime,
+          secure: true,
+          httpOnly: true,
+        });
+        
+        cookies.set('oauth', 'local', {
+          domain: 'medakaauction.com',
+          expires: expirationTime,
+        });
+        
+        cookies.set('id', response.data.id, {
+          domain: 'medakaauction.com',
+          expires: expirationTime,
+        });
+        
+        cookies.set('username', response.data.username, {
+          domain: 'medakaauction.com',
+          expires: expirationTime,
+        });
         setIsAuthenticated(true);
         navigate('/');
       } else {
