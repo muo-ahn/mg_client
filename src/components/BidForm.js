@@ -9,7 +9,7 @@ import '../styles/bidHistory.css';
 const cookies = new Cookies();
 
 const BidForm = ({ productId, bids: initialBids, latestBid, startPrice }) => {
-    const [bid, setBid] = useState({ bidder: cookies.get('username'), product_id: productId, amount: 0 });
+    const [bid, setBid] = useState({ product_id: productId, amount: 0 });
     const [bids, setBids] = useState(initialBids.slice(-3));
     const [prevBid, setPrevBid] = useState(latestBid || { amount: 0, place_time: '', bidder_name: '' });
 

@@ -65,7 +65,7 @@ const AddProduct = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('https://medakaauction.com/medaka', {
+            const response = await fetch('https://medakaauction.com/medaka/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
