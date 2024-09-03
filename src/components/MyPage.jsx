@@ -38,9 +38,15 @@ const MyPage = () => {
 
     const fetchUserData = useCallback(async () => {
         try {
-            const response = await axios.get('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/user/my-page/', {
-                withCredentials: true
-            });
+            const response = await axios.get('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/user/my-page/', 
+                {
+                  withCredentials: true,
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${getSessionStorageItem('token')}`
+                  }
+                }
+            );
             setUser(response.data);
 
             if (response.data.id) {

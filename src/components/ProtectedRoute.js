@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../components/context/AuthContext';
 
+const token = sessionStorage.getItem('access_token');
 const ProtectedRoute = ({ children }) => {
   const navigate = useNavigate();
   const { isAuthenticated, setIsAuthenticated } = useAuth();
@@ -14,7 +15,14 @@ const ProtectedRoute = ({ children }) => {
 
     const checkAuth = async () => {
       try {
-        await axios.get('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/auth/users/me', { withCredentials: true });
+        await axios.get('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/auth/users/me', {
+           withCredentials: true,
+           headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          }
+          }
+        );
         if (isMounted) {
           setIsAuthenticated(true);
           setLoading(false);
