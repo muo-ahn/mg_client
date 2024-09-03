@@ -2,11 +2,8 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Cookies } from 'react-cookie';
 
-const cookies = new Cookies();
-const token = cookies.get('access_token');
-
+const token = sessionStorage.getItem('access_token');
 const AddProduct = () => {
     const navigate = useNavigate();
     const [product, setProduct] = useState({
@@ -19,7 +16,7 @@ const AddProduct = () => {
         media: '',
         media_extra: [],
         thumbnails: [],
-        seller_id: cookies.get('id'),
+        seller_id: sessionStorage.getItem('id'),
         description: ''
     });
 

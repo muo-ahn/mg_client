@@ -1,3 +1,5 @@
+// src/components/MyPage.jsx
+
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { Label } from './ui/Label';
@@ -7,11 +9,8 @@ import { Link } from 'react-router-dom';
 import AddProduct from './AddProduct';
 import { useNavigate } from 'react-router-dom';
 
-const getCookie = (name) => {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-    return null;
+const getSessionStorageItem = (key) => {
+    return sessionStorage.getItem(key);
 };
 
 const MyPage = () => {
@@ -47,7 +46,7 @@ const MyPage = () => {
     }, [fetchFinishedProducts]);
 
     useEffect(() => {
-        setOauth(getCookie('oauth'));
+        setOauth(getSessionStorageItem('oauth'));
         fetchUserData();
     }, [fetchUserData]);
 

@@ -1,14 +1,11 @@
 // src/components/InstantPurchase.js
 
 import React, { useState } from 'react';
-import { Cookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 import { Button } from './ui/Button';
 
-const cookies = new Cookies();
-
 const InstantPurchase = ({ productId }) => {
-    const [bid, setBid] = useState({ bidder: cookies.get('username'), product_id: productId, amount: 0 });
+    const [bid, setBid] = useState({ bidder: sessionStorage.getItem('username'), product_id: productId, amount: 0 });
     const navigate = useNavigate();
     
     const handleChange = (e) => {

@@ -1,11 +1,10 @@
 // src/context/AuthContext.js
 
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import { Cookies } from 'react-cookie';
 import axios from 'axios';
 
 const AuthContext = createContext();
-const cookies = new Cookies();
+const token = sessionStorage.getItem('access_token');
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -13,9 +12,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const id = cookies.get('id');
-      const accessToken = cookies.get('access_token');
-      if (id && accessToken) {
+      if (id && token) {
         try {
           const response = await axios.get(
             'https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/user/my-page/', 
@@ -23,7 +20,7 @@ export const AuthProvider = ({ children }) => {
               withCredentials: true,
               headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${accessToken}`
+                'Authorization': `Bearer ${token}`
               }
             }
           );

@@ -70,10 +70,10 @@ export function Header({ onSearch }) {
           }
         }
       );
-      cookies.remove('access_token');
-      cookies.remove('oauth');
-      cookies.remove('id');
-      cookies.remove('username');
+      sessionStorage.removeItem('access_token');
+      sessionStorage.removeItem('id');
+      sessionStorage.removeItem('oauth');
+      sessionStorage.removeItem('username');
       setIsAuthenticated(false);
       navigate('/');
     } catch (error) {
