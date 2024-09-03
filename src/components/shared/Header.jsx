@@ -9,7 +9,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import SearchBar from './SearchBar';
 import '../../styles/header.css';
 
-const token = localStorage.getItem('access_token');
+const token = sessionStorage.getItem('access_token');
 export function Header({ onSearch }) {
   const { isAuthenticated, setIsAuthenticated } = useAuth();
   const navigate = useNavigate();
@@ -62,7 +62,7 @@ export function Header({ onSearch }) {
 
   const handleLogout = async () => {
     try {
-      localStorage.clear();
+      sessionStorage.clear();
       setIsAuthenticated(false);
       navigate('/');
     } catch (error) {

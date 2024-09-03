@@ -4,8 +4,8 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 
 const AuthContext = createContext();
-const token = localStorage.getItem('access_token');
-const id = localStorage.getItem('id');
+const token = sessionStorage.getItem('access_token');
+const id = sessionStorage.getItem('id');
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -30,10 +30,10 @@ export const AuthProvider = ({ children }) => {
         } catch (error) {
           console.error('Error fetching user data:', error);
           setIsAuthenticated(false);      
-          localStorage.removeItem('access_token');
-          localStorage.removeItem('id');
-          localStorage.removeItem('oauth');
-          localStorage.removeItem('username');
+          sessionStorage.removeItem('access_token');
+          sessionStorage.removeItem('id');
+          sessionStorage.removeItem('oauth');
+          sessionStorage.removeItem('username');
         }
       } else {
         setIsAuthenticated(false);

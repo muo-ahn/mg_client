@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../components/context/AuthContext';
 
-const token = localStorage.getItem('access_token');
+const token = sessionStorage.getItem('access_token');
 const ProtectedRoute = ({ children }) => {
   const navigate = useNavigate();
   const { isAuthenticated, setIsAuthenticated } = useAuth();

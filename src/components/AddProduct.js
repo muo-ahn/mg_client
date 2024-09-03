@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const token = localStorage.getItem('access_token');
+const token = sessionStorage.getItem('access_token');
 const AddProduct = () => {
     const navigate = useNavigate();
     const [product, setProduct] = useState({
@@ -16,7 +16,7 @@ const AddProduct = () => {
         media: '',
         media_extra: [],
         thumbnails: [],
-        seller_id: localStorage.getItem('id'),
+        seller_id: sessionStorage.getItem('id'),
         description: ''
     });
 

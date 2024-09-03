@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from './ui/Button';
 
 const InstantPurchase = ({ productId }) => {
-    const [bid, setBid] = useState({ bidder: localStorage.getItem('username'), product_id: productId, amount: 0 });
+    const [bid, setBid] = useState({ bidder: sessionStorage.getItem('username'), product_id: productId, amount: 0 });
     const navigate = useNavigate();
     
     const handleChange = (e) => {

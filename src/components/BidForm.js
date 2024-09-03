@@ -6,7 +6,7 @@ import { formatCurrency } from './context/FormatCurrency';
 import '../styles/bidHistory.css';
 
 const BidForm = ({ productId, bids: initialBids, latestBid, startPrice }) => {
-    const [bid, setBid] = useState({ bidder: localStorage.getItem('username'), product_id: productId, amount: 0 });
+    const [bid, setBid] = useState({ bidder: sessionStorage.getItem('username'), product_id: productId, amount: 0 });
     const [bids, setBids] = useState(initialBids.slice(-3));
     const [prevBid, setPrevBid] = useState(latestBid || { amount: 0, place_time: '', bidder_name: '' });
 
