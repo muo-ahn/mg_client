@@ -62,10 +62,7 @@ export function Header({ onSearch }) {
 
   const handleLogout = async () => {
     try {
-      sessionStorage.removeItem('access_token');
-      sessionStorage.removeItem('id');
-      sessionStorage.removeItem('oauth');
-      sessionStorage.removeItem('username');
+      sessionStorage.clear();
       setIsAuthenticated(false);
       navigate('/');
     } catch (error) {

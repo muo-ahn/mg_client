@@ -12,6 +12,7 @@ const ProtectedRoute = ({ children }) => {
 
   useEffect(() => {
     let isMounted = true;
+    alert(token);
 
     const checkAuth = async () => {
       try {
