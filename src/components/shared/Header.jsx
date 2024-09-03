@@ -3,14 +3,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Cookies } from 'react-cookie';
 import logo_header from "../../images/logo_header.png";
 import axios from 'axios';
 import Dropdown from 'react-bootstrap/Dropdown';
 import SearchBar from './SearchBar';
 import '../../styles/header.css';
 
-const cookies = new Cookies();
+const token = sessionStorage.getItem('access_token');
 export function Header({ onSearch }) {
   const { isAuthenticated, setIsAuthenticated } = useAuth();
   const navigate = useNavigate();
@@ -46,7 +45,8 @@ export function Header({ onSearch }) {
             {
               withCredentials: true,
               headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
               }
             }
           );
@@ -62,14 +62,6 @@ export function Header({ onSearch }) {
 
   const handleLogout = async () => {
     try {
-      await axios.post('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/auth/logout',
-        {
-          withCredentials: true,
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        }
-      );
       sessionStorage.removeItem('access_token');
       sessionStorage.removeItem('id');
       sessionStorage.removeItem('oauth');

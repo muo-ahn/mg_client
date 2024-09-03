@@ -21,9 +21,15 @@ const MyPage = () => {
 
     const fetchFinishedProducts = useCallback(async (userId) => {
         try {
-            const response = await axios.get(`https://medakaauction.com/medaka/${userId}/finished`, {
-                withCredentials: true
-            });
+            const response = await axios.get(`https://medakaauction.com/medaka/${userId}/finished`, 
+                {
+                  withCredentials: true,
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${getSessionStorageItem('token')}`
+                  }
+                }
+            );
             setFinishedProducts(response.data);
         } catch (error) {
             console.error('Error fetching finished products:', error);
