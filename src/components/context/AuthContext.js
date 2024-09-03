@@ -5,6 +5,7 @@ import axios from 'axios';
 
 const AuthContext = createContext();
 const token = sessionStorage.getItem('access_token');
+const id = sessionStorage.getItem('id');
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -28,10 +29,11 @@ export const AuthProvider = ({ children }) => {
           setIsAuthenticated(true);
         } catch (error) {
           console.error('Error fetching user data:', error);
-          setIsAuthenticated(false);
-          cookies.remove('access_token', { domain: 'medakaauction.com' });
-          cookies.remove('id', { domain: 'medakaauction.com' });
-          cookies.remove('username', { domain: 'medakaauction.com' });
+          setIsAuthenticated(false);      
+          sessionStorage.removeItem('access_token');
+          sessionStorage.removeItem('id');
+          sessionStorage.removeItem('oauth');
+          sessionStorage.removeItem('username');
         }
       } else {
         setIsAuthenticated(false);
