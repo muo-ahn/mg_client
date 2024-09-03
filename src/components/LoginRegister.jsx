@@ -48,10 +48,10 @@ const LoginRegisterPage = () => {
         }
       );
       if (response.data.access_token) {
-        sessionStorage.setItem('access_token', response.data.access_token);
-        sessionStorage.setItem('oauth', 'local');
-        sessionStorage.setItem('id', response.data.id);
-        sessionStorage.setItem('username', response.data.username);
+        localStorage.setItem('access_token', response.data.access_token);
+        localStorage.setItem('oauth', 'local');
+        localStorage.setItem('id', response.data.id);
+        localStorage.setItem('username', response.data.username);
         setIsAuthenticated(true);
         navigate('/');
       } else {

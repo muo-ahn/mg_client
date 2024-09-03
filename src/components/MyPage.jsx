@@ -9,8 +9,8 @@ import { Link } from 'react-router-dom';
 import AddProduct from './AddProduct';
 import { useNavigate } from 'react-router-dom';
 
-const getSessionStorageItem = (key) => {
-    return sessionStorage.getItem(key);
+const getlocalStorageItem = (key) => {
+    return localStorage.getItem(key);
 };
 
 const MyPage = () => {
@@ -26,7 +26,7 @@ const MyPage = () => {
                   withCredentials: true,
                   headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${getSessionStorageItem('token')}`
+                    'Authorization': `Bearer ${getlocalStorageItem('token')}`
                   }
                 }
             );
@@ -43,7 +43,7 @@ const MyPage = () => {
                   withCredentials: true,
                   headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${getSessionStorageItem('token')}`
+                    'Authorization': `Bearer ${getlocalStorageItem('token')}`
                   }
                 }
             );
@@ -58,7 +58,7 @@ const MyPage = () => {
     }, [fetchFinishedProducts]);
 
     useEffect(() => {
-        setOauth(getSessionStorageItem('oauth'));
+        setOauth(getlocalStorageItem('oauth'));
         fetchUserData();
     }, [fetchUserData]);
 
