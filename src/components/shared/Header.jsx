@@ -9,6 +9,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import SearchBar from './SearchBar';
 import '../../styles/header.css';
 
+const token = sessionStorage.getItem('access_token');
 export function Header({ onSearch }) {
   const { isAuthenticated, setIsAuthenticated } = useAuth();
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ export function Header({ onSearch }) {
               withCredentials: true,
               headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${sessionStorage.getItem('access_token')}`
+                'Authorization': `Bearer ${token}`
               }
             }
           );
