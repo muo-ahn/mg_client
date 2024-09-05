@@ -2,12 +2,10 @@
 
 import React, { useEffect } from 'react';
 import { useAuth } from './context/AuthContext';
-import { useCookies } from 'react-cookie';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const KakaoCallback = () => {
   const { setIsAuthenticated } = useAuth();
-    const [cookies, setCookie] = useCookies([]);
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -19,10 +17,10 @@ const KakaoCallback = () => {
         const username = decodeURIComponent(queryParams.get('username'));
       
         if (token) {
-          setCookie('access_token', token, { path: '/', maxAge:  30 * 60, sameSite: 'lax', secure: true});
-          setCookie('oauth', oauth, { path: '/', maxAge:  30 * 60 });
-          setCookie('id', id, { path: '/', maxAge:  30 * 60 });
-          setCookie('username', username, { path: '/', maxAge:  30 * 60 });
+          sessionStorage.setItem('access_token', token);
+          sessionStorage.setItem('oauth', oauth);
+          sessionStorage.setItem('id', id);
+          sessionStorage.setItem('username', username);
           setIsAuthenticated(true);
           navigate('/');
         } else {
@@ -30,7 +28,7 @@ const KakaoCallback = () => {
           setIsAuthenticated(false);
           navigate('/');
         }
-      }, [location, navigate, cookies, setCookie, setIsAuthenticated]);
+      }, [location, navigate, setIsAuthenticated]);
 
     return <div>Loading...</div>;
 };
