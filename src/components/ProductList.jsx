@@ -111,7 +111,7 @@ const ProductList = ({ searchQuery }) => {
     } else {
       setSearchResult([]);
     }
-  }, [searchQuery]);
+  }, [searchQuery, user]);
 
   const handleSortChange = (sortKey) => {
     setSortOption(sortKey);
