@@ -17,7 +17,7 @@
 
 @media (min-width: 576px) {
   .product-image-container {
-    height: 45px;
+    max-height: 45px;
     width: 100%;
   }
 
