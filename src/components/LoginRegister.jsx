@@ -115,7 +115,7 @@ const LoginRegisterPage = () => {
   const handleKakaoLogin = async () => {
     try {
       const response = await axios.get(
-        'https://medakaauction.com/auth/login/kakao/',
+        'https://medakaauction.com/auth/login/kakao',
         { withCredentials: true }
       );
       if (response.status === 200) {
