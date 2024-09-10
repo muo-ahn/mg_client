@@ -15,14 +15,14 @@
   width: 100%;
 }
 
-@media (min-width: 768px) {
+@media screen and (min-width: 576px) {
   .product-image-container {
-    max-height: 250px;
+    max-height: 200px;
     width: 100%;
   }
 
   .product-image {
-    max-height: 200px;
+    max-height: 150px;
     width: 100%;
   }
 }
