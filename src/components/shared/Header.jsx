@@ -123,7 +123,7 @@ export function Header({ onSearch }) {
           <nav className="bottom-nav flex gap-4 text-sm">
             <Link to="/" className="hover:underline">메다카경매</Link>
             <Link to="https://blog.naver.com/blog109" className="hover:underline">갤러리</Link>
-            <Link to="https://open.kakao.com/o/goWSy6se" className="hover:underline">카카오채널</Link>
+            <Link to="https://open.kakao.com/me/109" className="hover:underline">카카오채널</Link>
           </nav>
         </div>
       </div>
