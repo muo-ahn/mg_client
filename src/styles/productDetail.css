@@ -11,8 +11,15 @@
 .product-image-container {
   display: flex;
   position: relative;
-  height: 37.5rem;
-  width: 37.5rem;
+  height: 600px;
+  width: 600px;
+}
+
+@media (min-width: 768px) {
+  .product-image-container {
+    width: 450px;
+    height: 450px; 
+  }
 }
 
 .product-detail-card {
