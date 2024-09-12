@@ -17,13 +17,14 @@ const KakaoCallback = () => {
         const oauth = decodeURIComponent(queryParams.get('oauth'));
         const id = decodeURIComponent(queryParams.get('id'));
         const username = decodeURIComponent(queryParams.get('username'));
+        const refresh_token = decodeURIComponent(queryParams.get('refresh_token'));
       
         if (token) {
           sessionStorage.setItem('access_token', token);
           sessionStorage.setItem('oauth', oauth);
           sessionStorage.setItem('id', id);
           sessionStorage.setItem('username', username);
-          cookies.set('rf', response.data.refresh_token)
+          cookies.set('rf', refresh_token)
           setIsAuthenticated(true);
           navigate('/');
         } else {
