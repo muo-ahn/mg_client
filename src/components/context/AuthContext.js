@@ -6,7 +6,6 @@ import axios from 'axios';
 const AuthContext = createContext();
 const token = sessionStorage.getItem('access_token');
 const id = sessionStorage.getItem('id');
-const oauth = sessionStorage.getItem('oauth');
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -22,7 +21,7 @@ export const AuthProvider = ({ children }) => {
               withCredentials: true,
               headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token} ${oauth}`,
+                'Authorization': `Bearer ${sessionStorage.getItem('access_token')} ${sessionStorage.getItem('oauth')}`,
               }
             }
           );

@@ -18,7 +18,7 @@ const ProtectedRoute = ({ children }) => {
            withCredentials: true,
            headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${sessionStorage.getItem('access_token')}`
+            'Authorization': `Bearer ${sessionStorage.getItem('access_token')} ${sessionStorage.getItem('oauth')}`
           }
           }
         );
