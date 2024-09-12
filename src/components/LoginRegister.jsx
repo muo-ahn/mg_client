@@ -54,7 +54,7 @@ const LoginRegisterPage = () => {
         sessionStorage.setItem('oauth', 'local');
         sessionStorage.setItem('id', response.data.id);
         sessionStorage.setItem('username', response.data.username);
-        cookies.set(rf, response.data.refresh_token)
+        cookies.set('rf', response.data.refresh_token)
         setIsAuthenticated(true);
         navigate('/');
       } else {

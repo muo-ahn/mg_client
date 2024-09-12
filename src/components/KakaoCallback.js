@@ -23,7 +23,7 @@ const KakaoCallback = () => {
           sessionStorage.setItem('oauth', oauth);
           sessionStorage.setItem('id', id);
           sessionStorage.setItem('username', username);
-          cookies.set(rf, response.data.refresh_token)
+          cookies.set('rf', response.data.refresh_token)
           setIsAuthenticated(true);
           navigate('/');
         } else {
