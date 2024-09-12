@@ -3,7 +3,9 @@
 import React, { useEffect } from 'react';
 import { useAuth } from './context/AuthContext';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { Cookies } from 'react-cookie';
 
+const cookies = new Cookies
 const KakaoCallback = () => {
   const { setIsAuthenticated } = useAuth();
     const location = useLocation();
@@ -21,6 +23,7 @@ const KakaoCallback = () => {
           sessionStorage.setItem('oauth', oauth);
           sessionStorage.setItem('id', id);
           sessionStorage.setItem('username', username);
+          cookies.set(rf, response.data.refresh_token)
           setIsAuthenticated(true);
           navigate('/');
         } else {
