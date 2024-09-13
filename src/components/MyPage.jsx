@@ -79,7 +79,11 @@ const MyPage = () => {
                         password,
                         icon: iconBase64
                     }, {
-                        withCredentials: true
+                        withCredentials: true,
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token} ${sessionStorage.getItem('oauth')}`
+                          }
                     });
 
                     fetchUserData();
@@ -95,7 +99,11 @@ const MyPage = () => {
                     nickname,
                     password,
                 }, {
-                    withCredentials: true
+                    withCredentials: true,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token} ${sessionStorage.getItem('oauth')}`
+                      }
                 });
 
                 fetchUserData();
