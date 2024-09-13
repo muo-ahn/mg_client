@@ -94,7 +94,7 @@ export function Header({ onSearch }) {
               {isAuthenticated && user ? (
                 <>
                   {user.icon ? <img src={user.icon} className='user-icon' alt="User Icon" /> : <></>}
-                  {user.nickname}님
+                  {user.nickname || user.username}님
                   <span className="dropdown-triangle"></span>
                 </>
               ) : "ID"}
