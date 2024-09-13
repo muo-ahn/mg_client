@@ -77,13 +77,13 @@ const MyPage = () => {
                     await axios.put('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/auth/user/update', {
                         nickname,
                         password,
-                        icon: iconBase64
-                    }, {
-                        withCredentials: true,
+                        icon: iconBase64,
                         headers: {
                             'Content-Type': 'application/json',
                             'Authorization': `Bearer ${token} ${sessionStorage.getItem('oauth')}`
                           }
+                    }, {
+                        withCredentials: true
                     });
 
                     fetchUserData();
@@ -98,12 +98,12 @@ const MyPage = () => {
                 await axios.put('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/auth/user/update', {
                     nickname,
                     password,
-                }, {
-                    withCredentials: true,
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${token} ${sessionStorage.getItem('oauth')}`
                       }
+                }, {
+                    withCredentials: true
                 });
 
                 fetchUserData();
