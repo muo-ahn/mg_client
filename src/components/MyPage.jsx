@@ -74,18 +74,20 @@ const MyPage = () => {
                 iconBase64 = reader.result;
 
                 try {
-                    await axios.put('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/auth/user/update', {
+                    await axios.put('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/auth/user/update', 
+                    {
                         nickname,
                         password,
-                        icon: iconBase64,
+                        icon: iconBase64
+                    }, 
+                    {
                         headers: {
                             'Content-Type': 'application/json',
                             'Authorization': `Bearer ${token} ${sessionStorage.getItem('oauth')}`
-                          }
-                    }, {
+                        },
                         withCredentials: true
                     });
-
+    
                     fetchUserData();
                     alert("회원 정보가 수정되었습니다.");
                     navigate('/');
@@ -97,12 +99,13 @@ const MyPage = () => {
             try {
                 await axios.put('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/auth/user/update', {
                     nickname,
-                    password,
+                    password
+                }, 
+                {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${token} ${sessionStorage.getItem('oauth')}`
-                      }
-                }, {
+                    },
                     withCredentials: true
                 });
 
