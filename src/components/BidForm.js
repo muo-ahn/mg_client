@@ -44,7 +44,7 @@ const BidForm = ({ productId, bids: initialBids, latestBid, startPrice }) => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${sessionStorage.getItem('access_token')}`
+                    'Authorization': `Bearer ${sessionStorage.getItem('access_token')} ${sessionStorage.getItem('oauth')}`
                 },
                 body: JSON.stringify(bid)
             });
