@@ -40,7 +40,7 @@ const MyPage = () => {
                   withCredentials: true,
                   headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token} ${sessionStorage.getItem('oauth')}`
+                    'Authorization': `Bearer ${sessionStorage.getItem('access_token')} ${sessionStorage.getItem('oauth')}`
                   }
                 }
             );
