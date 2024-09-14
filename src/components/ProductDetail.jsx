@@ -82,7 +82,15 @@ const ProductDetail = () => {
 
   const handleIncreaseInterest = async () => {
     try {
-      await axios.put(`https://medakaauction.com/medaka/${id}/interest`);
+      await axios.put(`https://medakaauction.com/medaka/${id}/interest`,
+        {
+          withCredentials: true,
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${sessionStorage.getItem('access_token')} ${sessionStorage.getItem('oauth')}`
+          }
+        }
+      );
       window.location.reload();
     } catch (error) {
       console.error('Error increasing interest:', error);
