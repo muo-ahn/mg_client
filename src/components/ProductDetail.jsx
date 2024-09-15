@@ -82,7 +82,9 @@ const ProductDetail = () => {
 
   const handleIncreaseInterest = async () => {
     try {
-      await axios.put(`https://medakaauction.com/medaka/${id}/interest`,
+      await axios.put(
+        `https://medakaauction.com/medaka/${id}/interest`,
+        {},
         {
           withCredentials: true,
           headers: {
@@ -97,6 +99,7 @@ const ProductDetail = () => {
       alert('Failed to increase interest');
     }
   };
+  
 
   const handleCloseModal = () => {
     setShowModal(false);
