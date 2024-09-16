@@ -6,7 +6,7 @@ import { Label } from './ui/Label';
 import { Input } from './ui/Input';
 import { Button } from './ui/Button';
 import { useNavigate } from 'react-router-dom';
-import '../App.css';
+import '../styles/myPage.css';
 
 const token = sessionStorage.getItem('access_token');
 const MyPage = () => {
@@ -16,6 +16,7 @@ const MyPage = () => {
     const [oauth, setOauth] = useState(null);
     const navigate = useNavigate();
 
+    // Fetch Finished Auctions
     const fetchFinishedProducts = useCallback(async (userId) => {
         try {
             const response = await axios.get(`https://medakaauction.com/medaka/${userId}/finished`, 
@@ -33,6 +34,7 @@ const MyPage = () => {
         }
     }, []);
 
+    // Fetch User Data
     const fetchUserData = useCallback(async () => {
         try {
             const response = await axios.get('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/user/my-page/', 
@@ -60,6 +62,7 @@ const MyPage = () => {
         fetchUserData();
     }, [fetchUserData]);
 
+    // Handle Save Changes in User Data
     const handleSaveChanges = async (event) => {
         event.preventDefault();
 
@@ -126,6 +129,12 @@ const MyPage = () => {
 
     return (
         <div className="my-page">
+            {/* Top Tab Section */}
+            <div className="header-section">
+                <div className="tab-item active">프로필</div>
+                <div className="tab-item">나의 쇼핑</div>
+            </div>
+
             {/* Account Settings */}
             <div className="account-settings">
                 <h2>Account Settings</h2>

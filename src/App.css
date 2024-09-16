@@ -94,60 +94,6 @@
   padding: 1rem;
 }
 
-/* MyPage */
-.my-page {
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  align-items: center;
-  background-color: #f5f5f5;
-}
-
-.account-settings {
-  width: 100%;
-  max-width: 600px;
-  background-color: white;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.auctions-container {
-  width: 100%;
-  max-width: 1200px;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.interested-auctions,
-.finished-products {
-  background-color: white;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.auction-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
-}
-
-.auction-item {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  padding: 1rem;
-  border-radius: 8px;
-  text-align: center;
-}
-
-.auction-item img {
-  max-width: 100%;
-  border-radius: 8px;
-}
-
 /* Apply styles for screens that are 768px wide or smaller (common mobile screen size) */
 @media only screen and (max-width: 768px) {
   body, html {
