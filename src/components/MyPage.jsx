@@ -6,7 +6,7 @@ import { Label } from './ui/Label';
 import { Input } from './ui/Input';
 import { Button } from './ui/Button';
 import { useNavigate } from 'react-router-dom';
-import './App.css';
+import '../App.css';
 
 const token = sessionStorage.getItem('access_token');
 const MyPage = () => {
