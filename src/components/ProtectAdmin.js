@@ -12,7 +12,14 @@ const ProtectAdmin = ({ children }) => {
 
     const checkAuth = async () => {
       try {
-        await axios.get('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/auth/admin/me', { withCredentials: true });
+        await axios.get('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/auth/admin/me', 
+          { 
+            withCredentials: true,
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${sessionStorage.getItem('access_token')} ${sessionStorage.getItem('oauth')}`
+          }
+          });
         setIsAuthenticated(true);
       } catch (error) {
         if (isMounted) {
