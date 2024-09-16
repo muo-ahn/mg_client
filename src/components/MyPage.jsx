@@ -1,22 +1,20 @@
-// src/components/MyPage.jsx
-
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { Label } from './ui/Label';
 import { Input } from './ui/Input';
 import { Button } from './ui/Button';
+import { Link } from 'react-router-dom';
+import AddProduct from './AddProduct';
 import { useNavigate } from 'react-router-dom';
-import '../styles/myPage.css';
+import '../styles/myPage.css'; // Use the updated MyPage.css for styles
 
 const token = sessionStorage.getItem('access_token');
 const MyPage = () => {
     const [user, setUser] = useState(null);
     const [finishedProducts, setFinishedProducts] = useState([]);
-    const [interestProducts, setInterestProducts] = useState([]);
     const [oauth, setOauth] = useState(null);
     const navigate = useNavigate();
 
-    // Fetch Finished Auctions
     const fetchFinishedProducts = useCallback(async (userId) => {
         try {
             const response = await axios.get(`https://medakaauction.com/medaka/${userId}/finished`, 
@@ -34,7 +32,6 @@ const MyPage = () => {
         }
     }, []);
 
-    // Fetch User Data
     const fetchUserData = useCallback(async () => {
         try {
             const response = await axios.get('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/user/my-page/', 
@@ -47,7 +44,6 @@ const MyPage = () => {
                 }
             );
             setUser(response.data);
-            setInterestProducts(response.data.interest_product || []);
 
             if (response.data.id) {
                 fetchFinishedProducts(response.data.id);
@@ -62,7 +58,6 @@ const MyPage = () => {
         fetchUserData();
     }, [fetchUserData]);
 
-    // Handle Save Changes in User Data
     const handleSaveChanges = async (event) => {
         event.preventDefault();
 
@@ -129,58 +124,101 @@ const MyPage = () => {
 
     return (
         <div className="my-page">
-            {/* Top Tab Section */}
-            <div className="header-section">
-                <div className="tab-item active">프로필</div>
-                <div className="tab-item">나의 쇼핑</div>
-            </div>
+            {user.is_superuser && (
+                <Link to="/admin">
+                    <Button className="admin-button">Go to Admin Dashboard</Button>
+                </Link>
+            )}
+            {user.is_seller ? (
+                <SellerPage user={user} finishedProducts={finishedProducts} />
+            ) : (
+                <UserPage user={user} finishedProducts={finishedProducts} oauth={oauth} handleSaveChanges={handleSaveChanges} />
+            )}
+        </div>
+    );
+};
 
-            {/* Account Settings */}
-            <div className="account-settings">
-                <h2>Account Settings</h2>
-                <form onSubmit={handleSaveChanges}>
-                    <Label htmlFor="name">Nickname</Label>
-                    <Input id="name" defaultValue={user.nickname} />
-                    <Label htmlFor="password">Password</Label>
-                    <Input id="password" type="password" />
-                    <Label htmlFor="icon">Icon</Label>
-                    <Input id="icon" type="file" accept="image/jpeg, image/png" />
-                    <Button type="submit">Save Changes</Button>
-                </form>
-            </div>
+const UserPage = ({ user, finishedProducts, interestProducts, oauth, handleSaveChanges }) => {
+    return (
+        <div className="user-page">
+            <main className="content">
+                {/* Account Settings Section */}
+                {oauth === 'local' && (
+                    <div className="account-settings">
+                        <h2>Account Settings</h2>
+                        <form onSubmit={handleSaveChanges} className="form">
+                            <div className="form-group">
+                                <Label htmlFor="name">Nickname</Label>
+                                <Input id="name" defaultValue={user.nickname} />
+                            </div>
+                            <div className="form-group">
+                                <Label htmlFor="password">Password</Label>
+                                <Input id="password" type="password" />
+                            </div>
+                            <div className="form-group">
+                                <Label htmlFor="icon">Icon</Label>
+                                <Input id="icon" type="file" accept='image/jpeg, image/png'/>
+                            </div>
+                            <Button type="submit">Save Changes</Button>
+                        </form>
+                    </div>
+                )}
 
-            {/* Interested Auctions */}
-            <div className="auctions-container">
+                {/* Interested Auctions Section */}
                 <div className="interested-auctions">
-                    <h2>Interested Auctions</h2>
+                    <h3>Interested Auctions</h3>
                     <div className="auction-list">
-                        {interestProducts.map(product => (
+                        {interestProducts.map((product) => (
                             <div key={product.product_id} className="auction-item">
-                                <h3>{product.product_name}</h3>
-                                <img src={product.first_thumbnail} alt={product.product_name} />
+                                <h4>{product.product_name}</h4>
+                                <img src={product.first_thumbnail} alt={product.product_name} width={200} height={200} />
                                 <p>Start Price: {product.start_price}</p>
                             </div>
                         ))}
                     </div>
                 </div>
 
-                {/* Finished Auctions */}
-                <div className="finished-products">
-                    <h2>Finished Auctions</h2>
+                {/* Finished Auctions Section */}
+                <div className="finished-auctions">
+                    <h3>Finished Auctions</h3>
                     <div className="auction-list">
-                        {finishedProducts.map(product => (
-                            <div key={product.product_id} className="auction-item">
-                                <h3>{product.name}</h3>
-                                <img src={product.media || product.thumbnails[0]} alt={product.product_name} />
+                        {finishedProducts.map((product) => (
+                            <div key={product.id} className="auction-item">
+                                <h4>{product.name}</h4>
+                                <img src={product.media || product.thumbnails[0]} alt={product.product_name} width={200} height={200} />
+                                <p>Status: {product.status}</p>
                                 <p>Final Price: {product.final_price}</p>
-                                <Button>View Details</Button>
+                                <Button variant="outline" size="sm">View Details</Button>
                             </div>
                         ))}
                     </div>
                 </div>
-            </div>
+            </main>
         </div>
     );
 };
+
+const SellerPage = ({ user, finishedProducts }) => (
+    <div className="seller-page">
+        <div className="auction-management">
+            <h2>Auction Management</h2>
+            <AddProduct />
+        </div>
+        <div className="finished-auctions">
+            <h3>Finished Auctions</h3>
+            <div className="auction-list">
+                {finishedProducts.map((product) => (
+                    <div key={product.id} className="auction-item">
+                        <h4>{product.name}</h4>
+                        <img src={product.media || product.thumbnails} alt={product.product_name} width={200} height={200} />
+                        <p>Status: {product.status}</p>
+                        <p>Final Price: {product.final_price}</p>
+                        <Button variant="outline" size="sm">View Details</Button>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </div>
+);
 
 export default MyPage;

@@ -1,154 +1,98 @@
-/* Main Container */
-.my-page-container {
-    padding: 16px;
+/* General Layout */
+.my-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
     background-color: #f5f5f5;
     min-height: 100vh;
 }
 
-/* Header Section with Tabs */
-.header-section {
-    display: flex;
-    justify-content: space-around;
-    border-bottom: 2px solid #ddd;
-    padding: 16px 0;
-}
-
-.tab-item {
-    font-size: 1.2rem;
-    padding: 8px 16px;
-    color: #666;
-    cursor: pointer;
-}
-
-.tab-item.active {
-    color: #007bff;
-    border-bottom: 2px solid #007bff;
-}
-
-/* Profile Section */
-.profile-section {
-    background-color: white;
-    padding: 16px;
-    margin: 16px 0;
-    border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-}
-
-.profile-info h2 {
-    margin: 0;
-    font-size: 1.4rem;
-    color: #333;
-}
-
-.profile-info p {
-    font-size: 1rem;
-    color: #888;
-}
-
-.profile-stats {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 16px;
-}
-
-.stat-box {
-    text-align: center;
-    background-color: #f9f9f9;
-    padding: 12px;
-    border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-}
-
-.stat-box p {
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 0.25rem;
-}
-
-.stat-box span {
-    font-size: 1rem;
-    color: #888;
-}
-
-/* Interested Auctions Section */
-.interested-auctions {
-    background-color: white;
-    padding: 16px;
-    margin: 16px 0;
-    border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-}
-
-.interested-auctions h3 {
-    font-size: 1.5rem;
+/* Admin Button */
+.admin-button {
     margin-bottom: 16px;
-    color: #333;
+}
+
+/* User Page */
+.user-page {
+    width: 100%;
+    max-width: 1000px;
+    background-color: white;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Account Settings */
+.account-settings {
+    background-color: white;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+/* Auction Sections */
+.finished-auctions, .interested-auctions, .auction-management {
+    background-color: white;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .auction-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1rem;
+    gap: 16px;
 }
 
 .auction-item {
     background-color: white;
-    padding: 1rem;
     border: 1px solid #ddd;
+    padding: 16px;
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
 .auction-item img {
-    width: 100%;
+    max-width: 100%;
     border-radius: 8px;
     margin-bottom: 1rem;
 }
 
-.auction-item h4 {
-    font-size: 1.2rem;
-    color: #333;
-    margin-bottom: 0.5rem;
-}
-
-.auction-item p {
-    font-size: 1rem;
-    color: #777;
-}
-
-/* Finished Auctions Section */
-.finished-auctions {
+/* Seller Page */
+.seller-page {
+    width: 100%;
+    max-width: 1000px;
     background-color: white;
     padding: 16px;
-    margin: 16px 0;
     border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.finished-auctions h3 {
-    font-size: 1.5rem;
-    margin-bottom: 16px;
-    color: #333;
-}
-
-/* Bottom Navigation */
-.bottom-navigation {
-    display: flex;
-    justify-content: space-around;
-    background-color: white;
-    padding: 12px 0;
-    border-top: 1px solid #ddd;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
-
-.nav-button {
-    font-size: 0.9rem;
-    color: #666;
-}
-
-.nav-button.active {
-    color: #007bff;
+.auction-management {
+    margin-bottom: 24px;
 }
