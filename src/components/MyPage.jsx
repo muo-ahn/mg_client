@@ -1,3 +1,5 @@
+// src/components/MyPage.jsx
+
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { Label } from './ui/Label';
@@ -6,26 +8,26 @@ import { Button } from './ui/Button';
 import { Link } from 'react-router-dom';
 import AddProduct from './AddProduct';
 import { useNavigate } from 'react-router-dom';
-import '../styles/myPage.css'; // Use the updated MyPage.css for styles
+import '../styles/MyPage.css';
 
 const token = sessionStorage.getItem('access_token');
+
 const MyPage = () => {
     const [user, setUser] = useState(null);
     const [finishedProducts, setFinishedProducts] = useState([]);
+    const [interestProducts, setInterestProducts] = useState([]);
     const [oauth, setOauth] = useState(null);
     const navigate = useNavigate();
 
     const fetchFinishedProducts = useCallback(async (userId) => {
         try {
-            const response = await axios.get(`https://medakaauction.com/medaka/${userId}/finished`, 
-                {
-                  withCredentials: true,
-                  headers: {
+            const response = await axios.get(`https://medakaauction.com/medaka/${userId}/finished`, {
+                withCredentials: true,
+                headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token} ${sessionStorage.getItem('oauth')}`
-                  }
                 }
-            );
+            });
             setFinishedProducts(response.data);
         } catch (error) {
             console.error('Error fetching finished products:', error);
@@ -34,16 +36,18 @@ const MyPage = () => {
 
     const fetchUserData = useCallback(async () => {
         try {
-            const response = await axios.get('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/user/my-page/', 
+            const response = await axios.get(
+                'https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/user/my-page/',
                 {
-                  withCredentials: true,
-                  headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${sessionStorage.getItem('access_token')} ${sessionStorage.getItem('oauth')}`
-                  }
+                    withCredentials: true,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${sessionStorage.getItem('access_token')} ${sessionStorage.getItem('oauth')}`
+                    }
                 }
             );
             setUser(response.data);
+            setInterestProducts(response.data.interest_product || []);
 
             if (response.data.id) {
                 fetchFinishedProducts(response.data.id);
@@ -86,7 +90,7 @@ const MyPage = () => {
                         },
                         withCredentials: true
                     });
-    
+
                     fetchUserData();
                     alert("회원 정보가 수정되었습니다.");
                     navigate('/');
@@ -132,13 +136,19 @@ const MyPage = () => {
             {user.is_seller ? (
                 <SellerPage user={user} finishedProducts={finishedProducts} />
             ) : (
-                <UserPage user={user} finishedProducts={finishedProducts} oauth={oauth} handleSaveChanges={handleSaveChanges} />
+                <UserPage
+                    user={user}
+                    finishedProducts={finishedProducts}
+                    interestProducts={interestProducts}
+                    oauth={oauth}
+                    handleSaveChanges={handleSaveChanges}
+                />
             )}
         </div>
     );
 };
 
-const UserPage = ({ user, finishedProducts, interestProducts, oauth, handleSaveChanges }) => {
+const UserPage = ({ user, finishedProducts, interestProducts = [], oauth, handleSaveChanges }) => {
     return (
         <div className="user-page">
             <main className="content">
@@ -157,7 +167,7 @@ const UserPage = ({ user, finishedProducts, interestProducts, oauth, handleSaveC
                             </div>
                             <div className="form-group">
                                 <Label htmlFor="icon">Icon</Label>
-                                <Input id="icon" type="file" accept='image/jpeg, image/png'/>
+                                <Input id="icon" type="file" accept="image/jpeg, image/png" />
                             </div>
                             <Button type="submit">Save Changes</Button>
                         </form>
@@ -168,13 +178,22 @@ const UserPage = ({ user, finishedProducts, interestProducts, oauth, handleSaveC
                 <div className="interested-auctions">
                     <h3>Interested Auctions</h3>
                     <div className="auction-list">
-                        {interestProducts.map((product) => (
-                            <div key={product.product_id} className="auction-item">
-                                <h4>{product.product_name}</h4>
-                                <img src={product.first_thumbnail} alt={product.product_name} width={200} height={200} />
-                                <p>Start Price: {product.start_price}</p>
-                            </div>
-                        ))}
+                        {interestProducts.length > 0 ? (
+                            interestProducts.map((product) => (
+                                <div key={product.product_id} className="auction-item">
+                                    <h4>{product.product_name}</h4>
+                                    <img
+                                        src={product.first_thumbnail || 'default_image.jpg'}
+                                        alt={product.product_name}
+                                        width={200}
+                                        height={200}
+                                    />
+                                    <p>Start Price: {product.start_price}</p>
+                                </div>
+                            ))
+                        ) : (
+                            <p>No interested auctions available.</p>
+                        )}
                     </div>
                 </div>
 
@@ -185,10 +204,17 @@ const UserPage = ({ user, finishedProducts, interestProducts, oauth, handleSaveC
                         {finishedProducts.map((product) => (
                             <div key={product.id} className="auction-item">
                                 <h4>{product.name}</h4>
-                                <img src={product.media || product.thumbnails[0]} alt={product.product_name} width={200} height={200} />
+                                <img
+                                    src={product.media || product.thumbnails[0]}
+                                    alt={product.product_name}
+                                    width={200}
+                                    height={200}
+                                />
                                 <p>Status: {product.status}</p>
                                 <p>Final Price: {product.final_price}</p>
-                                <Button variant="outline" size="sm">View Details</Button>
+                                <Button variant="outline" size="sm">
+                                    View Details
+                                </Button>
                             </div>
                         ))}
                     </div>
@@ -210,10 +236,17 @@ const SellerPage = ({ user, finishedProducts }) => (
                 {finishedProducts.map((product) => (
                     <div key={product.id} className="auction-item">
                         <h4>{product.name}</h4>
-                        <img src={product.media || product.thumbnails} alt={product.product_name} width={200} height={200} />
+                        <img
+                            src={product.media || product.thumbnails}
+                            alt={product.product_name}
+                            width={200}
+                            height={200}
+                        />
                         <p>Status: {product.status}</p>
                         <p>Final Price: {product.final_price}</p>
-                        <Button variant="outline" size="sm">View Details</Button>
+                        <Button variant="outline" size="sm">
+                            View Details
+                        </Button>
                     </div>
                 ))}
             </div>
