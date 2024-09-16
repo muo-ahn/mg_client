@@ -8,7 +8,7 @@ import { Button } from './ui/Button';
 import { Link } from 'react-router-dom';
 import AddProduct from './AddProduct';
 import { useNavigate } from 'react-router-dom';
-import '../styles/MyPage.css';
+import '../styles/myPage.css';
 
 const token = sessionStorage.getItem('access_token');
 
