@@ -40,7 +40,7 @@ export function Header({ onSearch }) {
     if (isAuthenticated) {
       const fetchUserData = async () => {
         try {
-          const response = await axios.get('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/user/my-page/', 
+          const response = await axios.get('https://0nusqdjumd.execute-api.ap-northeast-2.amazonaws.com/default/auth/users/me', 
             {
               withCredentials: true,
               headers: {
