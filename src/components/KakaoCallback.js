@@ -12,8 +12,6 @@ const KakaoCallback = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-      console.log("KAKAO CALLBACK CALLED")
-
         const queryParams = new URLSearchParams(location.search);
         const token = queryParams.get('token');
         const oauth = decodeURIComponent(queryParams.get('oauth'));
@@ -28,12 +26,15 @@ const KakaoCallback = () => {
           sessionStorage.setItem('username', username);
           cookies.set('rf', refresh_token)
           setIsAuthenticated(true);
-          window.location.reload();
           navigate('/');
+
+          window.location.reload();
         } else {
           console.error('No token received');
           setIsAuthenticated(false);
           navigate('/');
+
+          window.location.reload();
         }
       }, [location, navigate, setIsAuthenticated]);
 
