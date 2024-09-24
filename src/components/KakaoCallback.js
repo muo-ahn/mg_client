@@ -12,6 +12,8 @@ const KakaoCallback = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+      console.log("KAKAO CALLBACK CALLED")
+
         const queryParams = new URLSearchParams(location.search);
         const token = queryParams.get('token');
         const oauth = decodeURIComponent(queryParams.get('oauth'));

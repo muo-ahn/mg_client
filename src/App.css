@@ -94,6 +94,27 @@
   padding: 1rem;
 }
 
+.modal-overlay {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  transform: translateY(-50px);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.modal-content.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
 /* Apply styles for screens that are 768px wide or smaller (common mobile screen size) */
 @media only screen and (max-width: 768px) {
   body, html {
