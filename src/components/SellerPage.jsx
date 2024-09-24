@@ -3,7 +3,8 @@
 import React from 'react';
 import AddProduct from './AddProduct';
 import '../styles/sellerPage.css';
-import { Button, Input } from './ui';
+import { Button } from './ui/Button';
+import { Input } from './ui/Input';
 
 const SellerPage = ({ user, finishedProducts, activeProducts, sortedAuctions, graphData, onSortByTimeRemain }) => {
     return (
