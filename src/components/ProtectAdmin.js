@@ -18,7 +18,7 @@ const ProtectAdmin = ({ children }) => {
             headers: {
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${sessionStorage.getItem('access_token')} ${sessionStorage.getItem('oauth')}`
-          }
+            }
           });
         setIsAuthenticated(true);
       } catch (error) {

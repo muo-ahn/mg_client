@@ -26,6 +26,7 @@ const KakaoCallback = () => {
           sessionStorage.setItem('username', username);
           cookies.set('rf', refresh_token)
           setIsAuthenticated(true);
+          window.location.reload();
           navigate('/');
         } else {
           console.error('No token received');
