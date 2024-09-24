@@ -2,20 +2,28 @@
 
 import React from 'react';
 import AddProduct from './AddProduct';
+import AuctionItem from './AuctionItem';
 import '../styles/sellerPage.css';
 import { Button } from './ui/Button';
 import { Input } from './ui/Input';
+import { useState } from 'react';
+import Modal from './Modal';
 
 const SellerPage = ({ user, finishedProducts, activeProducts, sortedAuctions, graphData, onSortByTimeRemain }) => {
+    const [isModalOpen, setModalOpen] = useState(false); // Manage modal state
+
     return (
         <div className="seller-page">
             {/* Sidebar */}
             <div className="sidebar">
                 <h3>매장 관리</h3>
                 <div className="sidebar-item">
-                    <Button>Update Seller Information</Button>
+                    <Button onClick={() => setModalOpen(true)}>Update Seller Information</Button>
+                    {isModalOpen && <Modal onClose={() => setModalOpen(false)}> {/* Modal logic */} 
+                        <p>Update seller info here</p>
+                    </Modal>}
                 </div>
-                
+
                 <h3>상품</h3>
                 <div className="sidebar-item">
                     <AddProduct />
@@ -45,16 +53,7 @@ const SellerPage = ({ user, finishedProducts, activeProducts, sortedAuctions, gr
                 <div className="auction-list">
                     {sortedAuctions.length > 0 ? (
                         sortedAuctions.map((product) => (
-                            <div key={product.id} className="auction-item">
-                                <h4>{product.name}</h4>
-                                <p>Time Remaining: {product.end_date}</p>
-                                <img
-                                    src={product.media || product.thumbnail}
-                                    alt={product.name}
-                                    width={200}
-                                    height={200}
-                                />
-                            </div>
+                            <AuctionItem key={product.id} product={product} />
                         ))
                     ) : (
                         <p>No active products available.</p>
@@ -64,26 +63,30 @@ const SellerPage = ({ user, finishedProducts, activeProducts, sortedAuctions, gr
                 {/* Graph for Orders and Profits */}
                 <h3>Orders and Profits</h3>
                 <div className="graph-container">
-                    {/* Implement graph rendering here based on graphData */}
+                    {graphData ? (
+                        <canvas id="ordersProfitGraph" />
+                    ) : (
+                        <p>Graph data is not available yet.</p>
+                    )}
                 </div>
 
                 {/* To-do List */}
                 <h3>To-Do List</h3>
                 <div className="todo-list">
                     <h4>Before Getting Money</h4>
-                    <p>{/* Items before getting money */}</p>
+                    <p>{/* Fetch dynamically or simulate data */}</p>
 
-                    <h4>Preparing for Send Product</h4>
-                    <p>{/* Preparing items */}</p>
+                    <h4>Preparing to Send Product</h4>
+                    <p>{/* Fetch dynamically or simulate data */}</p>
 
                     <h4>Holding to Send Product</h4>
-                    <p>{/* Holding items */}</p>
+                    <p>{/* Fetch dynamically or simulate data */}</p>
 
                     <h4>Waiting to Send Product</h4>
-                    <p>{/* Waiting items */}</p>
+                    <p>{/* Fetch dynamically or simulate data */}</p>
 
                     <h4>Sending Product</h4>
-                    <p>{/* Sending items */}</p>
+                    <p>{/* Fetch dynamically or simulate data */}</p>
                 </div>
 
                 {/* Finished Auctions Section */}
@@ -91,16 +94,7 @@ const SellerPage = ({ user, finishedProducts, activeProducts, sortedAuctions, gr
                 <div className="auction-list">
                     {finishedProducts.length > 0 ? (
                         finishedProducts.map((product) => (
-                            <div key={product.id} className="auction-item">
-                                <h4>{product.name}</h4>
-                                <p>Final Price: {product.final_price}</p>
-                                <img
-                                    src={product.media || product.thumbnail}
-                                    alt={product.name}
-                                    width={200}
-                                    height={200}
-                                />
-                            </div>
+                            <AuctionItem key={product.id} product={product} />
                         ))
                     ) : (
                         <p>No finished products available.</p>
