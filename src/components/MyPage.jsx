@@ -38,7 +38,7 @@ const MyPage = () => {
     // Fetch active products
     const fetchActiveProducts = useCallback(async () => {
         try {
-            const response = await axios.get(`https://medakaauction.com/medaka/active-products`, {
+            const response = await axios.get(`https://medakaauction.com/medaka/`, {
                 withCredentials: true,
                 headers: {
                     'Content-Type': 'application/json',
