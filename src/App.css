@@ -14,10 +14,10 @@
   padding-top: 0rem;
 }
 
-/* Ensure product grid displays 3 items per row */
+/* Ensure product grid displays 2 items per row */
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 2%;
   width: 100%;
   margin: 0 auto;

@@ -1,54 +1,61 @@
-// src/components/SellerPage.jsx
+// src/components/SellerPage.jsxz
 
-import React from 'react';
-import AddProduct from './AddProduct';
+import React, { useState } from 'react';
 import AuctionItem from './AuctionItem';
-import '../styles/sellerPage.css';
+import Modal from './Modal';
 import { Button } from './ui/Button';
 import { Input } from './ui/Input';
-import { useState } from 'react';
-import Modal from './Modal';
+import AddProduct from './AddProduct';
+import '../styles/sellerPage.css';
 
 const SellerPage = ({ user, finishedProducts, activeProducts, sortedAuctions, graphData, onSortByTimeRemain }) => {
-    const [isModalOpen, setModalOpen] = useState(false); // Manage modal state
+    const [isModalOpen, setModalOpen] = useState(false); // Manage modal state for AddProduct
 
     return (
-        <div className="seller-page">
-            {/* Sidebar */}
-            <div className="sidebar">
-                <h3>매장 관리</h3>
-                <div className="sidebar-item">
-                    <Button onClick={() => setModalOpen(true)}>Update Seller Information</Button>
-                    {isModalOpen && <Modal onClose={() => setModalOpen(false)}> {/* Modal logic */} 
-                        <p>Update seller info here</p>
-                    </Modal>}
+        <div className="desktop-1">
+            <div className="dropdown">
+                {/* Sidebar - Store Management */}
+                <div className="filter">
+                    <div className="title">
+                        <div className="icon-1"></div>
+                        <div className="null-">{user.nickname}님 환영합니다.</div>
+                    </div>
                 </div>
 
-                <h3>상품</h3>
-                <div className="sidebar-item">
-                    <AddProduct />
-                    <Button>View Selling Products</Button>
-                </div>
-
-                <h3>배송</h3>
-                <div className="sidebar-item">
-                    <Button>Shipment 1</Button>
-                    <Button>Shipment 2</Button>
-                    <Input placeholder="Shipment Details" />
-                </div>
-
-                <h3>정산</h3>
-                <div className="sidebar-item">
-                    <Button>Pricing</Button>
-                    <Button>Calculate Commission Fee</Button>
-                    <Button>Request Payment</Button>
+                <div className="options">
+                    {/* Sidebar Options */}
+                    <div className="option">
+                        <div className="icon"></div>
+                        <div className="text-">기본</div>
+                    </div>
+                    <div className="option-1">
+                        <div className="icon-2"></div>
+                        <div className="text--">경매 관리</div>
+                    </div>
+                    <div className="option-2">
+                        <div className="icon-3"></div>
+                        <div className="text--1">정산</div>
+                    </div>
+                    <div className="option-3">
+                        <div className="icon-4"></div>
+                        <div className="text--2">배송</div>
+                    </div>
+                    <div className="option-4">
+                        <div className="icon-5"></div>
+                        <div className="text--3">상품</div>
+                    </div>
+                    <div className="option-5">
+                        <div className="icon-6"></div>
+                        <div className="text--4">회원관리</div>
+                    </div>
                 </div>
             </div>
 
-            {/* Main Content */}
-            <div className="main-content">
-                {/* Sort by Time Remain */}
-                <h3>Active Products (Sorted by Time Remain)</h3>
+            {/* Main Content - 경매 Section */}
+            <div className="group--">
+                <div className="rectangle--"></div>
+                <div className="text---1">종료임박 경매</div>
+
                 <Button onClick={onSortByTimeRemain}>Sort by Time Remaining</Button>
                 <div className="auction-list">
                     {sortedAuctions.length > 0 ? (
@@ -59,38 +66,27 @@ const SellerPage = ({ user, finishedProducts, activeProducts, sortedAuctions, gr
                         <p>No active products available.</p>
                     )}
                 </div>
+            </div>
 
-                {/* Graph for Orders and Profits */}
-                <h3>Orders and Profits</h3>
-                <div className="graph-container">
-                    {graphData ? (
-                        <canvas id="ordersProfitGraph" />
+            <div className="group--">
+                <div className="rectangle--"></div>
+                <div className="text---1">경매</div>
+
+                {/* Active Products */}
+                <h3>Active Products</h3>
+                <Button onClick={onSortByTimeRemain}>Sort by Time Remaining</Button>
+                <div className="auction-list">
+                    {activeProducts.length > 0 ? (
+                        activeProducts.map((product) => (
+                            <AuctionItem key={product.id} product={product} />
+                        ))
                     ) : (
-                        <p>Graph data is not available yet.</p>
+                        <p>No active products available.</p>
                     )}
                 </div>
 
-                {/* To-do List */}
-                <h3>To-Do List</h3>
-                <div className="todo-list">
-                    <h4>Before Getting Money</h4>
-                    <p>{/* Fetch dynamically or simulate data */}</p>
-
-                    <h4>Preparing to Send Product</h4>
-                    <p>{/* Fetch dynamically or simulate data */}</p>
-
-                    <h4>Holding to Send Product</h4>
-                    <p>{/* Fetch dynamically or simulate data */}</p>
-
-                    <h4>Waiting to Send Product</h4>
-                    <p>{/* Fetch dynamically or simulate data */}</p>
-
-                    <h4>Sending Product</h4>
-                    <p>{/* Fetch dynamically or simulate data */}</p>
-                </div>
-
-                {/* Finished Auctions Section */}
-                <h3>Finished Auctions</h3>
+                {/* Finished Products */}
+                <h3>Finished Products</h3>
                 <div className="auction-list">
                     {finishedProducts.length > 0 ? (
                         finishedProducts.map((product) => (
@@ -98,6 +94,48 @@ const SellerPage = ({ user, finishedProducts, activeProducts, sortedAuctions, gr
                         ))
                     ) : (
                         <p>No finished products available.</p>
+                    )}
+                </div>
+            </div>
+
+            {/* Main Content - AddProduct Section */}
+            <div className="group---1">
+                <div className="rectangle-2"></div>
+                <div className="text---2">상품 관리</div>
+
+                <div className="sidebar-item">
+                    <Button onClick={() => setModalOpen(true)}>Add Product</Button>
+                    {/* Modal for Add Product */}
+                    {isModalOpen && (
+                        <Modal onClose={() => setModalOpen(false)}>
+                            <AddProduct />
+                        </Modal>
+                    )}
+                </div>
+            </div>
+
+            {/* Main Content - 주문 / 배송 Section */}
+            <div className="group---2">
+                <div className="rectangle-3"></div>
+                <div className="text---">주문 / 배송</div>
+
+                <div className="sidebar-item">
+                    <Button>Shipment 1</Button>
+                    <Button>Shipment 2</Button>
+                    <Input placeholder="Shipment Details" />
+                </div>
+            </div>
+
+            {/* Main Content - Graph Section */}
+            <div className="group---3">
+                <div className="rectangle-4"></div>
+                <div className="text--5">Orders and Profits</div>
+
+                <div className="graph-container">
+                    {graphData ? (
+                        <canvas id="ordersProfitGraph" />
+                    ) : (
+                        <p>Graph data is not available yet.</p>
                     )}
                 </div>
             </div>
