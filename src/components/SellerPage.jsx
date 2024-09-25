@@ -13,7 +13,7 @@ const SellerPage = ({ user, finishedProducts, activeProducts, sortedAuctions, gr
 
     return (
         <div className="desktop-1">
-            <div className="dropdown">
+            <div className="sidebar">
                 {/* Sidebar - Store Management */}
                 <div className="filter">
                     <div className="title">

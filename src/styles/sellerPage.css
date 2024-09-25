@@ -1,13 +1,11 @@
 /* src/styles/sellerPage.css */
 
 .desktop-1 {
-    width: 1440px;
-    height: 1660px;
     overflow: hidden;
     background: #FFFFFF;
 }
 
-.dropdown {
+.sidebar {
     position: absolute;
     top: 0px;
     left: 0px;
