@@ -1,7 +1,7 @@
 .product-card {
   background-color: white;
   border: 1px solid #ddd;
-  min-height: 600px;
+  min-height: 550px;
   border-radius: 8px;
   overflow: hidden;
   display: flex;
