@@ -88,7 +88,7 @@ const ProductList = ({ searchQuery }) => {
     if (searchQuery) {
       const fetchSearchResults = async () => {
         try {
-          const response = await fetch(`https://medakaauction.com/search?query=${searchQuery}/`, {
+          const response = await fetch(`https://medakaauction.com/search?query=${searchQuery}`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
