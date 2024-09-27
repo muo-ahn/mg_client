@@ -1,7 +1,7 @@
 .product-card {
   background-color: white;
   border: 1px solid #ddd;
-  min-height: 590px;
+  min-height: 600px;
   border-radius: 8px;
   overflow: hidden;
   display: flex;
@@ -18,8 +18,7 @@
 
 @media (min-width: 768px) {
   .product-card {
-    min-height: 450px; 
-    max-height: 500px;
+    height: 450px;
   }
 }
 
@@ -132,5 +131,6 @@
 }
 
 .end-date {
+  display: flex;
   color: #555;
 }
