@@ -19,7 +19,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 5%;
-  width: 92.5%;
+  width: 95%;
   margin: 0 auto;
 }
 
