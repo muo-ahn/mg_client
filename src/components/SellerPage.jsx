@@ -1,15 +1,25 @@
-// src/components/SellerPage.jsxz
+// src/components/SellerPage.jsx
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AuctionItem from './AuctionItem';
 import Modal from './Modal';
 import { Button } from './ui/Button';
 import { Input } from './ui/Input';
 import AddProduct from './AddProduct';
+import { useLocation } from 'react-router-dom'; // <-- Import useLocation
 import '../styles/sellerPage.css';
 
-const SellerPage = ({ user, finishedProducts, activeProducts, sortedAuctions, graphData, onSortByTimeRemain }) => {
+const SellerPage = () => {
     const [isModalOpen, setModalOpen] = useState(false); // Manage modal state for AddProduct
+
+    // Get passed data from route state
+    const location = useLocation();
+    const { user, finishedProducts, activeProducts, sortedAuctions } = location.state || {}; // Read the data passed via state
+
+    // Sort by time remaining
+    const handleSortByTimeRemain = () => {
+        // You can add sorting logic here if needed
+    };
 
     return (
         <div className="desktop-1">
@@ -56,9 +66,9 @@ const SellerPage = ({ user, finishedProducts, activeProducts, sortedAuctions, gr
                 <div className="rectangle--"></div>
                 <div className="text---1">종료임박 경매</div>
 
-                <Button onClick={onSortByTimeRemain}>Sort by Time Remaining</Button>
+                <Button onClick={handleSortByTimeRemain}>Sort by Time Remaining</Button>
                 <div className="auction-list">
-                    {sortedAuctions.length > 0 ? (
+                    {sortedAuctions && sortedAuctions.length > 0 ? (
                         sortedAuctions.map((product) => (
                             <AuctionItem key={product.id} product={product} />
                         ))
@@ -74,9 +84,9 @@ const SellerPage = ({ user, finishedProducts, activeProducts, sortedAuctions, gr
 
                 {/* Active Products */}
                 <h3>Active Products</h3>
-                <Button onClick={onSortByTimeRemain}>Sort by Time Remaining</Button>
+                <Button onClick={handleSortByTimeRemain}>Sort by Time Remaining</Button>
                 <div className="auction-list">
-                    {activeProducts.length > 0 ? (
+                    {activeProducts && activeProducts.length > 0 ? (
                         activeProducts.map((product) => (
                             <AuctionItem key={product.id} product={product} />
                         ))
@@ -88,7 +98,7 @@ const SellerPage = ({ user, finishedProducts, activeProducts, sortedAuctions, gr
                 {/* Finished Products */}
                 <h3>Finished Products</h3>
                 <div className="auction-list">
-                    {finishedProducts.length > 0 ? (
+                    {finishedProducts && finishedProducts.length > 0 ? (
                         finishedProducts.map((product) => (
                             <AuctionItem key={product.id} product={product} />
                         ))

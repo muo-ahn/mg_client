@@ -5,7 +5,6 @@ import axios from 'axios';
 import { Button } from './ui/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import UserPage from './UserPage';
-import SellerPage from './SellerPage';
 import '../styles/myPage.css';
 
 const token = sessionStorage.getItem('access_token');
@@ -90,7 +89,6 @@ const MyPage = () => {
     // Save user changes
     const handleSaveChanges = async (event) => {
         event.preventDefault();
-
         const nickname = event.target.name.value;
         const password = event.target.password.value;
         const icon = event.target.icon.files[0];
@@ -152,6 +150,18 @@ const MyPage = () => {
         return <div>Loading...</div>;
     }
 
+    // Navigate to the Seller page and pass the necessary data
+    const navigateToSellerPage = () => {
+        navigate('/seller', {
+            state: {
+                user,
+                finishedProducts,
+                activeProducts,
+                sortedAuctions
+            }
+        });
+    };
+
     return (
         <div className="my-page">
             {user.is_superuser && (
@@ -160,14 +170,9 @@ const MyPage = () => {
                 </Link>
             )}
             {user.is_seller ? (
-                <SellerPage 
-                    user={user} 
-                    finishedProducts={finishedProducts}
-                    activeProducts={activeProducts}
-                    sortedAuctions={sortedAuctions}
-                    onSortByTimeRemain={handleSortByTimeRemain}
-                    graphData={null}
-                />
+                <>
+                    <Button onClick={navigateToSellerPage}>Go to Seller Page</Button>
+                </>
             ) : (
                 <UserPage
                     user={user}
