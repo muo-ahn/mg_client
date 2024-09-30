@@ -1,7 +1,6 @@
 .product-card {
   background-color: white;
   border: 1px solid #ddd;
-  min-height: 500px;
   border-radius: 8px;
   overflow: hidden;
   display: flex;
@@ -16,9 +15,27 @@
   transform: translateY(-5px);
 }
 
+@media (min-width: 576px) {
+  .product-card {
+    max-height: 475px;
+  }
+}
+
 @media (min-width: 768px) {
   .product-card {
     max-height: 475px;
+  }
+}
+
+@media (min-width: 992px) {
+  .product-card {
+    max-height: 550px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .product-card {
+    max-height: 600px;
   }
 }
 
