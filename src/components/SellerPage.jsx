@@ -11,6 +11,7 @@ import '../styles/sellerPage.css';
 
 const SellerPage = () => {
     const [isModalOpen, setModalOpen] = useState(false); // Manage modal state for AddProduct
+    const [graphData, setGraphData] = useState(null);
 
     // Get passed data from route state
     const location = useLocation();
@@ -20,6 +21,17 @@ const SellerPage = () => {
     const handleSortByTimeRemain = () => {
         // You can add sorting logic here if needed
     };
+
+    useEffect(() => {
+        // Fetch graph data or calculate it here
+        const fetchGraphData = async () => {
+            // Assuming you fetch graph data from some API
+            const response = await fetchGraphAPI();
+            setGraphData(response.data);
+        };
+        
+        fetchGraphData();
+    }, []);    
 
     return (
         <div className="desktop-1">
