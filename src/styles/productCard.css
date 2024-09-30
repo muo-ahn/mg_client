@@ -29,13 +29,13 @@
 
 @media (min-width: 992px) {
   .product-card {
-    max-height: 600px;
+    max-height: 650px;
   }
 }
 
 @media (min-width: 1200px) {
   .product-card {
-    max-height: 600px;
+    max-height: 650px;
   }
 }
 
