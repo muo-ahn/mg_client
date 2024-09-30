@@ -23,11 +23,9 @@ const SellerPage = () => {
     };
 
     useEffect(() => {
-        // Fetch graph data or calculate it here
         const fetchGraphData = async () => {
-            // Assuming you fetch graph data from some API
-            const response = await fetchGraphAPI();
-            setGraphData(response.data);
+            // const response = await fetchGraphAPI();
+            // setGraphData(response.data);
         };
         
         fetchGraphData();
