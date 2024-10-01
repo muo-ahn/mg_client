@@ -6,7 +6,7 @@ import Modal from './Modal';
 import { Button } from './ui/Button';
 import { Input } from './ui/Input';
 import AddProduct from './AddProduct';
-import { useLocation } from 'react-router-dom'; // <-- Import useLocation
+import { useLocation } from 'react-router-dom'; // Import useLocation
 import '../styles/sellerPage.css';
 
 const SellerPage = () => {
@@ -24,6 +24,7 @@ const SellerPage = () => {
 
     useEffect(() => {
         const fetchGraphData = async () => {
+            // Fetch graph data logic (dummy API logic can be added here)
             // const response = await fetchGraphAPI();
             // setGraphData(response.data);
         };
