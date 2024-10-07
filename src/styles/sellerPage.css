@@ -5,9 +5,9 @@
 
 .sidebar {
     position: fixed; /* Fix sidebar to the left */
-    top: 0px;
-    left: 0px;
-    width: 220px; /* Adjust the width */
+    top: 0;
+    left: 0;
+    width: 220px; /* Adjust width */
     height: 100vh; /* Full height */
     box-shadow: inset 0px 4px 10px 0px rgba(0, 0, 0, 0.15);
     display: flex;
@@ -15,7 +15,6 @@
     justify-content: start;
     padding: 20px;
     background: rgba(165, 169, 247, 0.85); /* Adjust opacity */
-    z-index: 1; /* Ensure it's above the content */
 }
 
 .filter {
@@ -70,10 +69,9 @@
 }
 
 .group-- {
-    position: relative;
-    margin-left: 240px; /* Ensure content is aligned after sidebar */
+    margin-left: 240px; /* Adjust this to match the sidebar width */
     padding: 20px;
-    width: calc(100% - 240px); /* Adjust width based on sidebar */
+    width: calc(100% - 240px); /* Adjust based on the sidebar width */
 }
 
 .rectangle--, .rectangle-2, .rectangle-3, .rectangle-4 {
@@ -107,4 +105,23 @@
 
 .graph-container {
     margin-top: 20px;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .group-- {
+        margin-left: 0;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .auction-list {
+        grid-template-columns: 1fr; /* One column on mobile */
+    }
 }
