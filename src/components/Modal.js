@@ -33,7 +33,7 @@ const Modal = ({ show, onClose, children }) => {
 
   return (
     <div
-      className="modal-overlay fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center z-50 transition-opacity duration-300"
+      className="modal-overlay fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center z-9999 transition-opacity duration-300"
       onClick={handleOutsideClick}
     >
       <div
@@ -42,6 +42,7 @@ const Modal = ({ show, onClose, children }) => {
         aria-modal="true"
         aria-labelledby="modal-title"
         tabIndex="-1"
+        style={{ zIndex: 9999 }} // Add inline z-index to ensure visibility
       >
         <button
           onClick={onClose}

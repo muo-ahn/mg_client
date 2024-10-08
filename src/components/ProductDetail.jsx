@@ -99,7 +99,6 @@ const ProductDetail = () => {
       alert('Failed to increase interest');
     }
   };
-  
 
   const handleCloseModal = () => {
     setShowModal(false);

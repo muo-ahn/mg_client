@@ -7,7 +7,7 @@
     position: fixed; /* Fix sidebar to the left */
     top: 0;
     left: 0;
-    width: 220px; /* Adjust width */
+    width: 250px; /* Adjust width */
     height: 100vh; /* Full height */
     box-shadow: inset 0px 4px 10px 0px rgba(0, 0, 0, 0.15);
     display: flex;
