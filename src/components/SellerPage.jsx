@@ -120,7 +120,7 @@ const SellerPage = () => {
             </div>
 
             {/* Main Content - AddProduct Section */}
-            <div className="group---1">
+            <div className="group--">
                 <div className="rectangle-2"></div>
                 <div className="text---2">상품 관리</div>
 
@@ -136,7 +136,7 @@ const SellerPage = () => {
             </div>
 
             {/* Main Content - 주문 / 배송 Section */}
-            <div className="group---2">
+            <div className="group--">
                 <div className="rectangle-3"></div>
                 <div className="text---">주문 / 배송</div>
 
@@ -148,7 +148,7 @@ const SellerPage = () => {
             </div>
 
             {/* Main Content - Graph Section */}
-            <div className="group---3">
+            <div className="group--">
                 <div className="rectangle-4"></div>
                 <div className="text--5">Orders and Profits</div>
 
