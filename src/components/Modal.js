@@ -5,8 +5,6 @@ import React, { useEffect } from 'react';
 const Modal = ({ show, onClose, children }) => {
   // Close modal on ESC key press
   useEffect(() => {
-    console.log("Modal 호출");
-
     const handleEscape = (event) => {
       if (event.key === 'Escape') {
         onClose();
@@ -29,22 +27,17 @@ const Modal = ({ show, onClose, children }) => {
     }
   };
 
-  if (!show) {
-    return null;
-  }
-
   return (
     <div
-      className="modal-overlay fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center z-9999 transition-opacity duration-300"
+      className={`modal-overlay fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center z-50 ${show ? 'show' : ''}`} // Add the 'show' class dynamically
       onClick={handleOutsideClick}
     >
       <div
-        className="modal-content bg-white rounded-lg p-6 relative transition-transform transform-gpu duration-300"
+        className={`modal-content bg-white rounded-lg p-6 relative transition-transform transform-gpu duration-300 ${show ? 'show' : ''}`} // Add the 'show' class dynamically
         role="dialog"
         aria-modal="true"
         aria-labelledby="modal-title"
         tabIndex="-1"
-        style={{ zIndex: 9999 }} // Add inline z-index to ensure visibility
       >
         <button
           onClick={onClose}
