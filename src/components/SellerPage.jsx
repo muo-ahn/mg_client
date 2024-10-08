@@ -126,9 +126,8 @@ const SellerPage = () => {
 
                 <div className="sidebar-item">
                     <Button onClick={() => setModalOpen(true)}>Add Product</Button>
-                    {/* Modal for Add Product */}
                     {isModalOpen && (
-                        <Modal onClose={() => setModalOpen(false)}>
+                        <Modal show={isModalOpen} onClose={() => setModalOpen(false)}>
                             <AddProduct />
                         </Modal>
                     )}
