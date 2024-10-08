@@ -11,6 +11,8 @@ const BidForm = ({ productId, bids: initialBids, latestBid, startPrice }) => {
     const [prevBid, setPrevBid] = useState(latestBid || { amount: 0, place_time: '', bidder_name: '' });
 
     useEffect(() => {
+        console.log("BidForm 호출");
+
         if (
             latestBid &&
             (prevBid.amount !== latestBid.amount ||

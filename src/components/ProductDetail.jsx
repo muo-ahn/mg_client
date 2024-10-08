@@ -189,10 +189,14 @@ const ProductDetail = () => {
         </div>
       </div>
       <Modal show={showModal} onClose={handleCloseModal}>
-        <ProtectedRoute><BidForm productId={product.product_id} bids={bids} latestBid={latestBid} startPrice={product.start_price} /></ProtectedRoute>
+        <ProtectedRoute>
+          <BidForm productId={product.product_id} bids={bids} latestBid={latestBid} startPrice={product.start_price} />
+        </ProtectedRoute>
       </Modal>
       <Modal show={showInstantModal} onClose={() => setShowInstantModal(false)}>
-        <ProtectedRoute><InstantPurchase productId={product.product_id} /></ProtectedRoute>
+        <ProtectedRoute>
+          <InstantPurchase productId={product.product_id} />
+        </ProtectedRoute>
       </Modal>
     </div>
   );
