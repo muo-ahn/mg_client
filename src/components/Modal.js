@@ -5,6 +5,8 @@ import React, { useEffect } from 'react';
 const Modal = ({ show, onClose, children }) => {
   // Close modal on ESC key press
   useEffect(() => {
+    console.log("Modal 호출");
+
     const handleEscape = (event) => {
       if (event.key === 'Escape') {
         onClose();
