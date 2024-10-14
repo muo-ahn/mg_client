@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Button } from './ui/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import UserPage from './UserPage';
+import Modal from './Modal';
 import '../styles/myPage.css';
 
 const token = sessionStorage.getItem('access_token');
@@ -16,8 +17,8 @@ const MyPage = () => {
     const [activeProducts, setActiveProducts] = useState([]);
     const [sortedAuctions, setSortedAuctions] = useState([]);
     const [oauth, setOauth] = useState(null);
-    const [showProfileModal, setShowProfileModal] = useState(false); // Modal state for user profile updates
     const navigate = useNavigate();
+    const [showModal, setShowModal] = useState(false); // Modal state
 
     // Fetch finished products
     const fetchFinishedProducts = useCallback(async (userId) => {
@@ -87,7 +88,7 @@ const MyPage = () => {
         fetchUserData();
     }, [fetchUserData]);
 
-    // Save user changes
+    // Save user changes in the modal
     const handleSaveChanges = async (event) => {
         event.preventDefault();
         const nickname = event.target.name.value;
@@ -118,7 +119,7 @@ const MyPage = () => {
 
                     fetchUserData();
                     alert("회원 정보가 수정되었습니다.");
-                    setShowProfileModal(false); // Close the modal after saving changes
+                    navigate('/');
                 } catch (error) {
                     console.error('Error updating user data:', error);
                 }
@@ -139,7 +140,8 @@ const MyPage = () => {
 
                 fetchUserData();
                 alert("회원 정보가 수정되었습니다.");
-                setShowProfileModal(false); // Close the modal after saving changes
+                navigate('/');
+                window.location.reload();
             } catch (error) {
                 console.error('Error updating user data:', error);
             }
@@ -150,71 +152,42 @@ const MyPage = () => {
         return <div>Loading...</div>;
     }
 
+    // Modal toggle functions
+    const openModal = () => setShowModal(true);
+    const closeModal = () => setShowModal(false);
+
     return (
         <div className="my-page">
-            {user.is_superuser && (
-                <Link to="/admin">
-                    <Button className="admin-button">Go to Admin Dashboard</Button>
-                </Link>
-            )}
-            <div className="my-page-header">
-                <div className="user-id">ID: {user.id}</div>
-                <Button onClick={() => setShowProfileModal(true)} className="profile-button">
-                    내 프로필
-                </Button>
+            <div className="profile-section">
+                <span>ID {user.id}</span>
+                <Button className="profile-button" onClick={openModal}>내 프로필</Button>
             </div>
+            {user.is_seller ? (
+                <div> {/* Seller Page Data */} </div>
+            ) : (
+                <UserPage
+                    user={user}
+                    finishedProducts={finishedProducts}
+                    interestProducts={interestProducts}
+                    oauth={oauth}
+                    handleSaveChanges={handleSaveChanges}
+                />
+            )}
 
-            {showProfileModal && (
-                <div className="modal-overlay">
-                    <div className="modal-content">
-                        <UserPage
-                            user={user}
-                            finishedProducts={finishedProducts}
-                            interestProducts={interestProducts}
-                            oauth={oauth}
-                            handleSaveChanges={handleSaveChanges}
-                        />
-                        <Button onClick={() => setShowProfileModal(false)} className="close-modal-button">Close</Button>
-                    </div>
+            <Modal show={showModal} onClose={closeModal}>
+                <div className="profile-modal-content">
+                    {/* Profile form for updating user information */}
+                    <form onSubmit={handleSaveChanges}>
+                        <label>닉네임</label>
+                        <input type="text" name="name" defaultValue={user.nickname} />
+                        <label>비밀번호</label>
+                        <input type="password" name="password" />
+                        <label>아이콘</label>
+                        <input type="file" name="icon" accept="image/*" />
+                        <Button type="submit">저장</Button>
+                    </form>
                 </div>
-            )}
-
-            {/* Active products and auction sorting */}
-            <div className="active-auctions-section">
-                <h3>진행중인 경매</h3>
-                <Button onClick={handleSortByTimeRemain}>Sort by Time Remaining</Button>
-                <ul>
-                    {sortedAuctions.length > 0 ? (
-                        sortedAuctions.map(product => (
-                            <li key={product.id} className="auction-item">
-                                <span>{product.product_name}</span>
-                                <span>현재가: {product.current_price || product.start_price} 원</span>
-                                <span>마감일: {new Date(product.end_date).toLocaleDateString()}</span>
-                            </li>
-                        ))
-                    ) : (
-                        <p>No active auctions available</p>
-                    )}
-                </ul>
-            </div>
-
-            {/* Finished products section */}
-            <div className="finished-auctions-section">
-                <h3>종료된 경매</h3>
-                <ul>
-                    {finishedProducts.length > 0 ? (
-                        finishedProducts.map(product => (
-                            <li key={product.id} className="auction-item">
-                                <span>{product.product_name}</span>
-                                <span>최종가: {product.final_price} 원</span>
-                                <span>마감일: {new Date(product.end_date).toLocaleDateString()}</span>
-                            </li>
-                        ))
-                    ) : (
-                        <p>No finished auctions available</p>
-                    )}
-                </ul>
-            </div>
+            </Modal>
         </div>
     );
 };

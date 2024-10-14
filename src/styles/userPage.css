@@ -1,0 +1,160 @@
+.user-page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  .profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .profile-header .profile-id {
+    font-size: 18px;
+    font-weight: bold;
+    color: #666;
+  }
+  
+  .profile-header .profile-button {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  
+  .auction-summary {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+    margin-bottom: 30px;
+  }
+  
+  .auction-summary-item {
+    text-align: center;
+  }
+  
+  .auction-summary-item h3 {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .auction-summary-item p {
+    font-size: 14px;
+    color: #888;
+  }
+  
+  .auction-list-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .auction-list-header h2 {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .auction-list-header .more-button {
+    font-size: 14px;
+    color: #007aff;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+  }
+  
+  .auction-list {
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+    padding: 20px;
+  }
+  
+  .auction-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  .auction-item:last-child {
+    border-bottom: none;
+  }
+  
+  .auction-item .auction-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .auction-item .auction-info .auction-title {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .auction-item .auction-info .auction-date {
+    font-size: 14px;
+    color: #999;
+  }
+  
+  .auction-item .auction-price {
+    display: flex;
+    align-items: center;
+  }
+  
+  .auction-item .auction-price .current-price {
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .auction-item .auction-status {
+    color: #e74c3c;
+    font-weight: bold;
+  }
+  
+  .footer-summary {
+    padding: 20px;
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+    margin-top: 40px;
+  }
+  
+  .footer-summary .summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .footer-summary .summary-item p {
+    font-size: 14px;
+  }
+  
+  .footer-summary .summary-item:last-child {
+    margin-bottom: 0;
+  }
+  
+  .footer-summary .coupon-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .footer-summary .coupon-item button {
+    background-color: #007aff;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 12px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .footer-summary .coupon-item button:hover {
+    background-color: #005bb5;
+  }
+  

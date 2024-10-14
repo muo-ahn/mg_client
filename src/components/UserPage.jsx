@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Button } from './ui/Button';
+import '../styles/userPage.css';
 
 const UserPage = ({ user, finishedProducts, interestProducts, oauth, handleSaveChanges }) => {
     return (

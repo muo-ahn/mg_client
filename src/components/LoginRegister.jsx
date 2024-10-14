@@ -137,7 +137,7 @@ const LoginRegisterPage = () => {
       <main className="flex-1 bg-background text-foreground">
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 py-12 px-6">
           <div className="bg-muted rounded-lg p-6">
-            <h2 className="text-lg font-bold mb-4">Login</h2>
+            <h2 className="text-lg font-bold mb-4">로그인</h2>
             <form className="space-y-4" onSubmit={handleLogin}>
               <div>
                 <Label htmlFor="login-username">ID</Label>
