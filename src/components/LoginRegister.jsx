@@ -74,7 +74,7 @@ const LoginRegisterPage = () => {
       setCodeSent(true);
     } catch (error) {
       console.error('Failed to request verification code:', error);
-      alert('Failed to request verification code');
+      alert('본인확인 코드 전송 실패');
     }
   };
 
@@ -88,7 +88,7 @@ const LoginRegisterPage = () => {
       setIsVerified(true);
     } catch (error) {
       console.error('Failed to verify phone number:', error);
-      alert('Failed to verify phone number');
+      alert('본인확인 코드 전송 실패');
     }
   };
 
@@ -111,7 +111,7 @@ const LoginRegisterPage = () => {
       navigate('/');
     } catch (error) {
       console.error('Registration failed:', error);
-      alert('Registration failed');
+      alert('회원가입 실패\n잠시 후 다시 시도해주세요.');
     }
   };
 
@@ -124,11 +124,11 @@ const LoginRegisterPage = () => {
       if (response.status === 200) {
         window.location.href = response.data.auth_url;
       } else {
-        alert('Kakao login failed');
+        alert('카카오 로그인 실패');
       }
     } catch (error) {
       console.error('Kakao login failed', error);
-      alert(`Kakao login failed: ${error.message}`);
+      alert(`카카오 로그인 실패: ${error.message}`);
     }
   };
 
@@ -140,12 +140,12 @@ const LoginRegisterPage = () => {
             <h2 className="text-lg font-bold mb-4">Login</h2>
             <form className="space-y-4" onSubmit={handleLogin}>
               <div>
-                <Label htmlFor="login-username">Username</Label>
+                <Label htmlFor="login-username">ID</Label>
                 <Input 
                   id="login-username" 
                   name="username" 
                   type="text" 
-                  placeholder="Enter your username" 
+                  placeholder="ID" 
                   onChange={handleLoginChange} 
                 />
               </div>
@@ -155,27 +155,27 @@ const LoginRegisterPage = () => {
                   id="login-password" 
                   name="password" 
                   type="password" 
-                  placeholder="Enter your password" 
+                  placeholder="Password" 
                   onChange={handleLoginChange} 
                 />
               </div>
               <Button type="submit" className="w-full">Login</Button>
               <Button onClick={handleKakaoLogin}>Login with Kakao</Button>
               <div className="text-center">
-                <Link onClick={() => setShowForgotPassword(true)} className="text-sm text-muted-foreground hover:underline">Forgot password?</Link>
+                <Link onClick={() => setShowForgotPassword(true)} className="text-sm text-muted-foreground hover:underline">비밀번호 찾기</Link>
               </div>
             </form>
           </div>
           <div className="bg-muted rounded-lg p-6">
-            <h2 className="text-lg font-bold mb-4">Register</h2>
+            <h2 className="text-lg font-bold mb-4">회원가입</h2>
             <form className="space-y-4" onSubmit={handleRegister}>
               <div>
-                <Label htmlFor="register-username">Username</Label>
+                <Label htmlFor="register-username">ID</Label>
                 <Input 
                   id="register-username" 
                   name="username" 
                   type="text" 
-                  placeholder="Enter your username" 
+                  placeholder="ID" 
                   onChange={handleRegisterChange} 
                 />
               </div>
@@ -185,7 +185,7 @@ const LoginRegisterPage = () => {
                   id="register-password" 
                   name="password" 
                   type="password" 
-                  placeholder="Enter your password" 
+                  placeholder="Password" 
                   value={registerForm.password} 
                   onChange={handleRegisterChange} 
                 />
@@ -196,26 +196,26 @@ const LoginRegisterPage = () => {
                   id="register-phone_number" 
                   name="phone_number" 
                   type="text" 
-                  placeholder="Enter your phone number" 
+                  placeholder="Phone Number" 
                   onChange={handleRegisterChange} 
                 />
-                <Button onClick={requestVerificationCode} type="button" className="send-verification">Send Verification Code</Button>
+                <Button onClick={requestVerificationCode} type="button" className="send-verification">본인확인</Button>
               </div>
               {codeSent && (
                 <div>
-                  <Label htmlFor="verification-code">Verification Code</Label>
+                  <Label htmlFor="verification-code">본인확인 코드</Label>
                   <Input 
                     id="verification-code" 
                     name="verification_code" 
                     type="text" 
-                    placeholder="Enter the verification code" 
+                    placeholder="본인확인 코드" 
                     value={verificationCode} 
                     onChange={(e) => setVerificationCode(e.target.value)} 
                   />
-                  <Button onClick={verifyPhoneNumber} type="button" className="confirm-verification">Verify Code</Button>
+                  <Button onClick={verifyPhoneNumber} type="button" className="confirm-verification">확인</Button>
                 </div>
               )}
-              <Button type="submit" className="w-full">Register</Button>
+              <Button type="submit" className="w-full">회원가입</Button>
             </form>
           </div>
         </div>

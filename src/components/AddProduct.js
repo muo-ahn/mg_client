@@ -80,15 +80,15 @@ const AddProduct = () => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <input name="product_name" type="text" placeholder="Product Name" value={product.product_name} onChange={handleChange} required />
-            <input name="original_source" type="text" placeholder="Original Source" value={product.original_source} onChange={handleChange} required />
-            <input name="consigner" type="text" placeholder="Consigner" value={product.consigner} onChange={handleChange} required />
-            <input name="start_price" type="number" placeholder="Start Price" value={product.start_price} onChange={handleChange} required />
-            <input name="increment" type="number" placeholder="Increment" value={product.increment} onChange={handleChange} required />
-            <input name="end_date" type="datetime-local" placeholder="End Date" value={product.end_date} onChange={handleChange} required />
-            <input name="description" type="text" placeholder="Description" value={product.description} onChange={handleChange} required />
-            <input name="thumbnails" type="file" multiple accept='image/jpeg, image/png' onChange={handleMultiFileChangeThumbnail} required />
-            <input name="media_extra" type="file" multiple accept='image/jpeg, image/png' onChange={handleMultiFileChangeExtra} />
+            <input name="product_name" type="text" placeholder="상품명" value={product.product_name} onChange={handleChange} required />
+            <input name="original_source" type="text" placeholder="출처" value={product.original_source} onChange={handleChange} required />
+            <input name="consigner" type="text" placeholder="작출자" value={product.consigner} onChange={handleChange} required />
+            <input name="start_price" type="number" placeholder="시작가" value={product.start_price} onChange={handleChange} required />
+            <input name="increment" type="number" placeholder="호가 단위" value={product.increment} onChange={handleChange} required />
+            <input name="end_date" type="datetime-local" placeholder="마감일" value={product.end_date} onChange={handleChange} required />
+            <input name="description" type="text" placeholder="설명" value={product.description} onChange={handleChange} required />
+            <input name="thumbnails" type="file" placeholder="썸네일" multiple accept='image/jpeg, image/png' onChange={handleMultiFileChangeThumbnail} required />
+            <input name="media_extra" type="file" placeholder="상세 이미지" multiple accept='image/jpeg, image/png' onChange={handleMultiFileChangeExtra} />
             <button type="submit">Add Product</button>
         </form>
     );

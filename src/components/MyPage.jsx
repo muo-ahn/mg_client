@@ -16,6 +16,7 @@ const MyPage = () => {
     const [activeProducts, setActiveProducts] = useState([]);
     const [sortedAuctions, setSortedAuctions] = useState([]);
     const [oauth, setOauth] = useState(null);
+    const [showProfileModal, setShowProfileModal] = useState(false); // Modal state for user profile updates
     const navigate = useNavigate();
 
     // Fetch finished products
@@ -117,7 +118,7 @@ const MyPage = () => {
 
                     fetchUserData();
                     alert("회원 정보가 수정되었습니다.");
-                    navigate('/');
+                    setShowProfileModal(false); // Close the modal after saving changes
                 } catch (error) {
                     console.error('Error updating user data:', error);
                 }
@@ -138,8 +139,7 @@ const MyPage = () => {
 
                 fetchUserData();
                 alert("회원 정보가 수정되었습니다.");
-                navigate('/');
-                window.location.reload();
+                setShowProfileModal(false); // Close the modal after saving changes
             } catch (error) {
                 console.error('Error updating user data:', error);
             }
@@ -150,18 +150,6 @@ const MyPage = () => {
         return <div>Loading...</div>;
     }
 
-    // Navigate to the Seller page and pass the necessary data
-    const navigateToSellerPage = () => {
-        navigate('/seller', {
-            state: {
-                user,
-                finishedProducts,
-                activeProducts,
-                sortedAuctions
-            }
-        });
-    };
-
     return (
         <div className="my-page">
             {user.is_superuser && (
@@ -169,19 +157,64 @@ const MyPage = () => {
                     <Button className="admin-button">Go to Admin Dashboard</Button>
                 </Link>
             )}
-            {user.is_seller ? (
-                <>
-                    <Button onClick={navigateToSellerPage}>Go to Seller Page</Button>
-                </>
-            ) : (
-                <UserPage
-                    user={user}
-                    finishedProducts={finishedProducts}
-                    interestProducts={interestProducts}
-                    oauth={oauth}
-                    handleSaveChanges={handleSaveChanges}
-                />
+            <div className="my-page-header">
+                <div className="user-id">ID: {user.id}</div>
+                <Button onClick={() => setShowProfileModal(true)} className="profile-button">
+                    내 프로필
+                </Button>
+            </div>
+
+            {showProfileModal && (
+                <div className="modal-overlay">
+                    <div className="modal-content">
+                        <UserPage
+                            user={user}
+                            finishedProducts={finishedProducts}
+                            interestProducts={interestProducts}
+                            oauth={oauth}
+                            handleSaveChanges={handleSaveChanges}
+                        />
+                        <Button onClick={() => setShowProfileModal(false)} className="close-modal-button">Close</Button>
+                    </div>
+                </div>
             )}
+
+            {/* Active products and auction sorting */}
+            <div className="active-auctions-section">
+                <h3>진행중인 경매</h3>
+                <Button onClick={handleSortByTimeRemain}>Sort by Time Remaining</Button>
+                <ul>
+                    {sortedAuctions.length > 0 ? (
+                        sortedAuctions.map(product => (
+                            <li key={product.id} className="auction-item">
+                                <span>{product.product_name}</span>
+                                <span>현재가: {product.current_price || product.start_price} 원</span>
+                                <span>마감일: {new Date(product.end_date).toLocaleDateString()}</span>
+                            </li>
+                        ))
+                    ) : (
+                        <p>No active auctions available</p>
+                    )}
+                </ul>
+            </div>
+
+            {/* Finished products section */}
+            <div className="finished-auctions-section">
+                <h3>종료된 경매</h3>
+                <ul>
+                    {finishedProducts.length > 0 ? (
+                        finishedProducts.map(product => (
+                            <li key={product.id} className="auction-item">
+                                <span>{product.product_name}</span>
+                                <span>최종가: {product.final_price} 원</span>
+                                <span>마감일: {new Date(product.end_date).toLocaleDateString()}</span>
+                            </li>
+                        ))
+                    ) : (
+                        <p>No finished auctions available</p>
+                    )}
+                </ul>
+            </div>
         </div>
     );
 };

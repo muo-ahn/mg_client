@@ -1,82 +1,73 @@
 // src/components/UserPage.jsx
 
 import React from 'react';
-import { Label } from './ui/Label';
-import { Input } from './ui/Input';
 import { Button } from './ui/Button';
+import '../styles/userPage.css';
 
-const UserPage = ({ user, finishedProducts, interestProducts = [], oauth, handleSaveChanges }) => {
+const UserPage = ({ user, finishedProducts, interestProducts, oauth, handleSaveChanges }) => {
     return (
-        <div className="user-page">
-            <main className="content">
-                {/* Account Settings Section */}
-                {oauth === 'local' && (
-                    <div className="account-settings">
-                        <h2>Account Settings</h2>
-                        <form onSubmit={handleSaveChanges} className="form">
-                            <div className="form-group">
-                                <Label htmlFor="name">Nickname</Label>
-                                <Input id="name" defaultValue={user.nickname} />
-                            </div>
-                            <div className="form-group">
-                                <Label htmlFor="password">Password</Label>
-                                <Input id="password" type="password" />
-                            </div>
-                            <div className="form-group">
-                                <Label htmlFor="icon">Icon</Label>
-                                <Input id="icon" type="file" accept="image/jpeg, image/png" />
-                            </div>
-                            <Button type="submit">Save Changes</Button>
-                        </form>
-                    </div>
-                )}
+        <div className="user-page-container">
+            {/* User Info Section */}
+            <div className="user-info">
+                <h2>{user.nickname}님의 정보</h2>
+                <p>전화번호: {user.phone_number}</p>
+                <p>OAuth 정보: {oauth ? '연결됨' : '연결되지 않음'}</p>
+            </div>
 
-                {/* Interested Auctions Section */}
-                <div className="interested-auctions">
-                    <h3>Interested Auctions</h3>
-                    <div className="auction-list">
-                        {interestProducts.length > 0 ? (
-                            interestProducts.map((product) => (
-                                <div key={product.product_id} className="auction-item">
-                                    <h4>{product.product_name}</h4>
-                                    <img
-                                        src={product.first_thumbnail || 'default_image.jpg'}
-                                        alt={product.product_name}
-                                        width={200}
-                                        height={200}
-                                    />
-                                    <p>Start Price: {product.start_price}</p>
-                                </div>
-                            ))
-                        ) : (
-                            <p>No interested auctions available.</p>
-                        )}
-                    </div>
-                </div>
+            {/* Interested Products Section */}
+            <div className="interest-section">
+                <h3>관심 상품</h3>
+                <ul>
+                    {interestProducts.length > 0 ? (
+                        interestProducts.map(product => (
+                            <li key={product.id} className="product-item">
+                                <span>{product.product_name}</span>
+                                <span>{product.start_price} 원</span>
+                            </li>
+                        ))
+                    ) : (
+                        <p>No interested products</p>
+                    )}
+                </ul>
+            </div>
 
-                {/* Finished Auctions Section */}
-                <div className="finished-auctions">
-                    <h3>Finished Auctions</h3>
-                    <div className="auction-list">
-                        {finishedProducts.map((product) => (
-                            <div key={product.id} className="auction-item">
-                                <h4>{product.name}</h4>
-                                <img
-                                    src={product.media || product.thumbnails[0]}
-                                    alt={product.product_name}
-                                    width={200}
-                                    height={200}
-                                />
-                                <p>Status: {product.status}</p>
-                                <p>Final Price: {product.final_price}</p>
-                                <Button variant="outline" size="sm">
-                                    View Details
-                                </Button>
-                            </div>
-                        ))}
+            {/* Finished Auctions Section */}
+            <div className="finished-auctions-section">
+                <h3>종료된 경매</h3>
+                <ul>
+                    {finishedProducts.length > 0 ? (
+                        finishedProducts.map(product => (
+                            <li key={product.id} className="auction-item">
+                                <span>{product.product_name}</span>
+                                <span>최종가: {product.final_price} 원</span>
+                                <span>마감일: {new Date(product.end_date).toLocaleDateString()}</span>
+                            </li>
+                        ))
+                    ) : (
+                        <p>No finished auctions</p>
+                    )}
+                </ul>
+            </div>
+
+            {/* Profile Update Section */}
+            <div className="profile-update-section">
+                <h3>회원 정보 수정</h3>
+                <form onSubmit={handleSaveChanges}>
+                    <div className="form-group">
+                        <label htmlFor="name">닉네임</label>
+                        <input type="text" id="name" name="name" defaultValue={user.nickname} placeholder="닉네임" />
                     </div>
-                </div>
-            </main>
+                    <div className="form-group">
+                        <label htmlFor="password">새 비밀번호</label>
+                        <input type="password" id="password" name="password" placeholder="새 비밀번호" />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="icon">프로필 사진</label>
+                        <input type="file" id="icon" name="icon" />
+                    </div>
+                    <Button type="submit" className="save-button">저장</Button>
+                </form>
+            </div>
         </div>
     );
 };

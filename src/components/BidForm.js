@@ -50,20 +50,21 @@ const BidForm = ({ productId, bids: initialBids, latestBid, startPrice }) => {
             });
             const data = await response.json();
             if (response.ok) {
-                alert('Bid placed successfully');
+                alert('입찰 성공');
             } else {
-                alert(data.detail || 'Failed to place bid');
+                alert('입찰 실패');
             }
         } catch (error) {
-            alert(error.message);
+            alert('잠시 후 다시 시도해주세요.');
+            console.log(error.message);
         }
     };
 
     return (
         <div className="modal-container mx-auto py-12 px-6">
-            <h1 className="text-2xl font-bold mb-4">Place a Bid</h1>
+            <h1 className="text-2xl font-bold mb-4">호가 등록</h1>
             <div className="bid-history mb-4">
-                <h2 className="text-lg font-bold mb-2">Latest Bid History</h2>
+                <h2 className="text-lg font-bold mb-2">경매 히스토리</h2>
                 <div className="history-list">
                     {bids && bids.length > 0 ? (
                         bids.map((bid, index) => (
@@ -84,11 +85,11 @@ const BidForm = ({ productId, bids: initialBids, latestBid, startPrice }) => {
             </div>
             <form onSubmit={handleSubmit}>
                 <div className="mb-4">
-                    <label htmlFor="amount" className="block text-sm font-medium text-gray-700">Your Bid</label>
+                    <label htmlFor="amount" className="block text-sm font-medium text-gray-700">호가</label>
                     <input
                         name="amount"
                         type="number"
-                        placeholder="Your Bid"
+                        placeholder="호가"
                         value={bid.amount}
                         onChange={handleChange}
                         className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
