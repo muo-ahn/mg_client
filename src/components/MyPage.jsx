@@ -159,7 +159,7 @@ const MyPage = () => {
     return (
         <div className="my-page">
             <div className="profile-section">
-                <span>ID {user.id}</span>
+                <span>ID : {user.id}</span>
                 <Button className="profile-button" onClick={openModal}>내 프로필</Button>
             </div>
             {user.is_seller ? (
